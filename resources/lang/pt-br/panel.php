@@ -1,5 +1,5 @@
 <?php
 
 return [
-    'site_title' => 'frCampra',
+    'site_title' => 'Desenvolvimento Web 2',
 ];
