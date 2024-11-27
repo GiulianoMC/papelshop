@@ -347,7 +347,12 @@ class PermissionsTableSeeder extends Seeder
                 'id'    => '109',
                 'title' => 'empresa_access',
                 'description' => 'Empresas - Acesso',
-            ]
+            ],          
+            [
+                'id'    => '110',
+                'title' => 'produto_access',
+                'description' => 'Material - Acesso',
+            ],
         ];
 
         Permission::insert($permissions);
