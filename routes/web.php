@@ -80,4 +80,9 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::delete('messenger/{topic}', 'MessengerController@destroyTopic')->name('messenger.destroyTopic');
     Route::post('messenger/{topic}/reply', 'MessengerController@replyToTopic')->name('messenger.reply');
     Route::get('messenger/{topic}/reply', 'MessengerController@showReply')->name('messenger.showReply');
+
+    //Material
+    Route::delete('materiais/massDestroy', 'MaterialController@massDestroy')->name('materiais.massDestroy');
+    Route::delete('materiais/destroy/{material}', 'MaterialController@destroy')->name('materiais.destroy');
+    Route::resource('materiais', 'MaterialController');
 });

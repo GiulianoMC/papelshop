@@ -19,7 +19,7 @@
                         <span class="pull-right-container"><i class="fa fa-fw fa-angle-left pull-right"></i></span>
                     </a>
                     <ul class="treeview-menu">
-                        @can('pessoa_access')
+                        <!-- @can('pessoa_access')
                             <li class="{{ request()->is('admin/pessoas') || request()->is('admin/pessoas/*') ? 'active' : '' }}">
                                 <a href="{{ route("admin.pessoas.index") }}">
                                     <i class="fa-fw far fa-address-card">
@@ -28,8 +28,8 @@
                                     <span>{{ trans('cruds.pessoa.title') }}</span>
                                 </a>
                             </li>
-                        @endcan
-                        @can('perfil_access')
+                        @endcan -->
+                        <!-- @can('perfil_access')
                             <li class="{{ request()->is('admin/perfils') || request()->is('admin/perfils/*') ? 'active' : '' }}">
                                 <a href="{{ route("admin.perfils.index") }}">
                                     <i class="fa-fw fab fa-creative-commons-by">
@@ -38,8 +38,8 @@
                                     <span>{{ trans('cruds.perfil.title') }}</span>
                                 </a>
                             </li>
-                        @endcan
-                        @can('cliente_access')
+                        @endcan -->
+                        <!-- @can('cliente_access')
                             <li class="{{ request()->is('admin/clientes') || request()->is('admin/clientes/*') ? 'active' : '' }}">
                                 <a href="{{ route("admin.clientes.index") }}">
                                     <i class="fa-fw far fa-handshake">
@@ -48,8 +48,8 @@
                                     <span>{{ trans('cruds.cliente.title') }}</span>
                                 </a>
                             </li>
-                        @endcan
-                        @can('empresa_access')
+                        @endcan -->
+                        <!-- @can('empresa_access')
                             <li class="{{ request()->is('admin/empresas') || request()->is('admin/empresas/*') ? 'active' : '' }}">
                                 <a href="{{ route("admin.empresas.index") }}">
                                     <i class="fa-fw fas fa-building">
@@ -58,11 +58,21 @@
                                     <span>{{ trans('cruds.empresa.title') }}</span>
                                 </a>
                             </li>
+                        @endcan -->
+                        @can('material_access')
+                            <li class="{{ request()->is('admin/materiais') || request()->is('admin/materiais/*') ? 'active' : '' }}">
+                                <a href="{{ route("admin.materiais.index") }}">
+                                    <i class="fa-fw fas fa-building">
+
+                                    </i>
+                                    <span>{{ trans('cruds.material.title') }}</span>
+                                </a>
+                            </li>
                         @endcan
                     </ul>
                 </li>
             @endcan
-            @can('relatorio_access')
+            <!-- @can('relatorio_access')
                 <li class="treeview">
                     <a href="#">
                         <i class="fa-fw fas fa-book">
@@ -84,8 +94,8 @@
                         @endcan
                     </ul>
                 </li>
-            @endcan
-            @can('task_management_access')
+            @endcan -->
+            <!-- @can('task_management_access')
                 <li class="treeview">
                     <a href="#">
                         <i class="fa-fw fas fa-list">
@@ -137,7 +147,7 @@
                         @endcan
                     </ul>
                 </li>
-            @endcan
+            @endcan -->
             @can('user_management_access')
                 <li class="treeview">
                     <a href="#">
@@ -178,7 +188,7 @@
                                 </a>
                             </li>
                         @endcan
-                        @can('team_access')
+                        <!-- @can('team_access')
                             <li class="{{ request()->is('admin/teams') || request()->is('admin/teams/*') ? 'active' : '' }}">
                                 <a href="{{ route("admin.teams.index") }}">
                                     <i class="fa-fw fas fa-users">
@@ -187,8 +197,8 @@
                                     <span>{{ trans('cruds.team.title') }}</span>
                                 </a>
                             </li>
-                        @endcan
-                        @can('audit_log_access')
+                        @endcan -->
+                        <!-- @can('audit_log_access')
                             <li class="{{ request()->is('admin/audit-logs') || request()->is('admin/audit-logs/*') ? 'active' : '' }}">
                                 <a href="{{ route("admin.audit-logs.index") }}">
                                     <i class="fa-fw fas fa-file-alt">
@@ -197,11 +207,11 @@
                                     <span>{{ trans('cruds.auditLog.title') }}</span>
                                 </a>
                             </li>
-                        @endcan
+                        @endcan -->
                     </ul>
                 </li>
             @endcan
-            @can('user_alert_access')
+            <!-- @can('user_alert_access')
                 <li class="{{ request()->is('admin/user-alerts') || request()->is('admin/user-alerts/*') ? 'active' : '' }}">
                     <a href="{{ route("admin.user-alerts.index") }}">
                         <i class="fa-fw fas fa-bell">
@@ -210,9 +220,9 @@
                         <span>{{ trans('cruds.userAlert.title') }}</span>
                     </a>
                 </li>
-            @endcan
+            @endcan -->
             @php($unread = \App\QaTopic::unreadCount())
-                <li class="{{ request()->is('admin/messenger') || request()->is('admin/messenger/*') ? 'active' : '' }}">
+                <!-- <li class="{{ request()->is('admin/messenger') || request()->is('admin/messenger/*') ? 'active' : '' }}">
                     <a href="{{ route("admin.messenger.index") }}">
                         <i class="fa-fw fa fa-envelope">
 
@@ -222,7 +232,7 @@
                             <strong>( {{ $unread }} )</strong>
                         @endif
                     </a>
-                </li>
+                </li> -->
                 <li>
                     <a href="#" onclick="event.preventDefault(); document.getElementById('logoutform').submit();">
                         <i class="fas fa-fw fa-sign-out-alt">
