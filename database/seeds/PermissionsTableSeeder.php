@@ -347,7 +347,33 @@ class PermissionsTableSeeder extends Seeder
                 'id'    => '109',
                 'title' => 'empresa_access',
                 'description' => 'Empresas - Acesso',
+            ],
+            [
+                'id'    => '110',
+                'title' => 'material_create',
+                'description' => 'Materiais - Criar',
+            ],
+            [
+                'id'    => '111',
+                'title' => 'material_edit',
+                'description' => 'Materiais - Editar',
+            ],
+            [
+                'id'    => '112',
+                'title' => 'material_show',
+                'description' => 'Materiais - Mostrar',
+            ],
+            [
+                'id'    => '113',
+                'title' => 'material_delete',
+                'description' => 'Materiais - Deletar',
+            ],
+            [
+                'id'    => '114',
+                'title' => 'material_access',
+                'description' => 'Materiais - Acesso',
             ]
+            
         ];
 
         Permission::insert($permissions);

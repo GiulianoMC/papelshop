@@ -18,7 +18,7 @@ class Material extends Model
     // Relação com a tabela 'categorias'
     public function categorias()
     {
-        return $this->belongsTo(Categoria::class);
+        return $this->belongsTo(Categoria::class, 'categoria_id'); 
     }
 
 }
