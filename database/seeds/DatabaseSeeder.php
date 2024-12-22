@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
             ClientesTableSeeder::class,
             ClientesUsersTableSeeder::class,
             CategoriasSeeder::class,
+            MarcasSeeder::class,
             MateriaisSeeder::class
         ]);
     }

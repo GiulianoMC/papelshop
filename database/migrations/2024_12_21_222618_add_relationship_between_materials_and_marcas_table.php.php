@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddRelationshipBetweenMaterialsAndCategoriesMaterialsTable extends Migration
+class AddRelationshipBetweenMaterialsAndMarcasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,13 +14,13 @@ class AddRelationshipBetweenMaterialsAndCategoriesMaterialsTable extends Migrati
     public function up()
     {
         Schema::table('materiais', function (Blueprint $table) {
-            // Cria o campo de chave estrangeira para a relação com a tabela 'categorias'
-            $table->unsignedBigInteger('categoria_id')->after('marca'); // Adiciona o campo após 'marca'
+
+            $table->unsignedBigInteger('marca_id');
 
             // Define a chave estrangeira
-            $table->foreign('categoria_id', 'categoria_fk')
+            $table->foreign('marca_id', 'marca_fk')
                   ->references('id')
-                  ->on('categorias')
+                  ->on('marcas')
                   ->onDelete('cascade')
                   ->onUpdate('cascade');
         });
@@ -34,9 +34,9 @@ class AddRelationshipBetweenMaterialsAndCategoriesMaterialsTable extends Migrati
     public function down()
     {
         Schema::table('materiais', function (Blueprint $table) {
-            // Remove a relação e a coluna
-            $table->dropForeign('categoria_fk'); // Nome do índice criado
-            $table->dropColumn('categoria_id');
+
+            $table->dropForeign('marca_fk'); 
+            $table->dropColumn('marca_id');
         });
     }
 }

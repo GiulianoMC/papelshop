@@ -25,7 +25,7 @@ class StoreMaterialRequest extends FormRequest
             'categoria_id' => [
                 'required',
             ],
-            'marca' => [
+            'marca_id' => [
                 'required',
             ],
             'nome' => [

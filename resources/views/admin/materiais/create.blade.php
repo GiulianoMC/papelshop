@@ -26,12 +26,18 @@
                             </p>
                         </div>
 
-                        <div class="form-group {{ $errors->has('marca') ? 'has-error' : '' }}">
-                            <label for="marca">{{ trans('cruds.material.fields.marca') }}*</label>
-                            <input type="text" id="marca" name="marca" class="form-control" value="{{ old('marca', isset($material) ? $material->marca : '') }}" required>
-                            @if($errors->has('marca'))
+                        <div class="form-group {{ $errors->has('marca_id') ? 'has-error' : '' }}">
+                            <label for="marca_id">{{ trans('cruds.material.fields.marca') }}*</label>
+                            <select id="marca_id" name="marca_id" class="form-control" required>
+                                @foreach($marcas as $marca)
+                                    <option value="{{ $marca->id }}" {{ old('marca_id', isset($material) ? $material->marca_id : '') == $marca->id ? 'selected' : '' }}>
+                                        {{ $marca->nome }}
+                                    </option>
+                                @endforeach
+                            </select>
+                            @if($errors->has('marca_id'))
                                 <p class="help-block">
-                                    {{ $errors->first('marca') }}
+                                    {{ $errors->first('marca_id') }}
                                 </p>
                             @endif
                         </div>

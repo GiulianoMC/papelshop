@@ -35,7 +35,10 @@
                                         {{ trans('cruds.material.fields.marca') }}
                                     </th>
                                     <td>
-                                        {{ $material->marca }}
+                                        @php
+                                            $marcaNome = $marcas->where('id', $material->marca_id)->first()->nome ?? 'Marca não definida';
+                                        @endphp
+                                        {{ $marcaNome }}
                                     </td>
                                 </tr>
                                 <tr>

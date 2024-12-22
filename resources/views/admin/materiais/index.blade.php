@@ -39,7 +39,7 @@
                                         <td></td>
                                         <td>{{ $material->id ?? '' }}</td>
                                         <td>{{ $material->nome ?? '' }}</td>
-                                        <td>{{ $material->marca ?? '' }}</td>
+                                        <td>{{ $material->marcas->nome ?? 'Marca não disponível' }}</td>
                                         <td>{{ $material->categorias->nome ?? 'Categoria não disponível' }}</td>
                                         <td>{{ $material->preco ?? '' }}</td>
                                         <td>{{ $material->disponivel ? trans('global.yes') : trans('global.no') }}</td>

@@ -8,6 +8,7 @@ use App\Http\Requests\StoreMaterialRequest;
 use App\Http\Requests\UpdateMaterialRequest;
 use App\Material;
 use App\Categoria;
+use App\Marca;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -19,7 +20,7 @@ class MaterialController extends Controller
     {
         abort_if(Gate::denies('material_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
         
-        $materiais = Material::with('categorias')->get();
+        $materiais = Material::with('categorias', 'marcas')->get();
     
         return view('admin.materiais.index', compact('materiais'));
     }
@@ -30,7 +31,9 @@ class MaterialController extends Controller
 
         $categorias = Categoria::all();
 
-        return view('admin.materiais.create', compact('categorias'));
+        $marcas = Marca::all();
+
+        return view('admin.materiais.create', compact('categorias', 'marcas'));
     }
 
     public function store(StoreMaterialRequest $request)
@@ -51,7 +54,9 @@ class MaterialController extends Controller
 
         $categorias = Categoria::all();
 
-        return view('admin.materiais.edit', compact('material', 'categorias'));
+        $marcas = Marca::all();
+
+        return view('admin.materiais.edit', compact('material', 'categorias', 'marcas'));
     }
 
     public function update(UpdateMaterialRequest $request, Material $material)
@@ -72,7 +77,9 @@ class MaterialController extends Controller
 
         $categorias = Categoria::all();
 
-        return view('admin.materiais.show', compact('material', 'categorias'));
+        $marcas = Marca::all();
+
+        return view('admin.materiais.show', compact('material', 'categorias', 'marcas'));
     }
     public function destroy(Material $material)
     {

@@ -15,7 +15,7 @@ class MateriaisSeeder extends Seeder
         $materiais = [
             [
                 'nome' => 'Caderno de Anotações', 
-                'marca' => 'Tilibra', 
+                'marca_id' => '1', 
                 'categoria_id' => 1, 
                 'preco' => 9.99, 
                 'descricao' => 'Caderno universitário, 100 folhas', 
@@ -24,7 +24,7 @@ class MateriaisSeeder extends Seeder
             ],
             [
                 'nome' => 'Caneta Azul', 
-                'marca' => 'BIC', 
+                'marca_id' => '2', 
                 'categoria_id' => 2, 
                 'preco' => 1.50, 
                 'descricao' => 'Caneta esferográfica azul', 
@@ -33,7 +33,7 @@ class MateriaisSeeder extends Seeder
             ],
             [
                 'nome' => 'Lápis Preto', 
-                'marca' => 'Faber-Castell', 
+                'marca_id' => '3', 
                 'categoria_id' => 2, 
                 'preco' => 0.75, 
                 'descricao' => 'Lápis de madeira, 12 unidades', 
@@ -42,7 +42,7 @@ class MateriaisSeeder extends Seeder
             ],
             [
                 'nome' => 'Mochila Escolar', 
-                'marca' => 'Nike', 
+                'marca_id' => '4', 
                 'categoria_id' => 6, 
                 'preco' => 129.90, 
                 'descricao' => 'Mochila de costas, material impermeável', 
@@ -51,7 +51,7 @@ class MateriaisSeeder extends Seeder
             ],
             [
                 'nome' => 'Giz de Cera', 
-                'marca' => 'Crayola', 
+                'marca_id' => '5', 
                 'categoria_id' => 5, 
                 'preco' => 15.99, 
                 'descricao' => 'Kit com 24 cores', 
@@ -60,7 +60,7 @@ class MateriaisSeeder extends Seeder
             ],
             [
                 'nome' => 'Papel A4', 
-                'marca' => 'Chamex', 
+                'marca_id' => '6', 
                 'categoria_id' => 4, 
                 'preco' => 18.99, 
                 'descricao' => 'Papel sulfite A4, pacote com 500 folhas', 
@@ -69,7 +69,7 @@ class MateriaisSeeder extends Seeder
             ],
             [
                 'nome' => 'Livro de Matemática', 
-                'marca' => 'Editora FTD', 
+                'marca_id' => '7', 
                 'categoria_id' => 11, 
                 'preco' => 79.90, 
                 'descricao' => 'Livro didático de matemática, 6ª série', 
@@ -78,7 +78,7 @@ class MateriaisSeeder extends Seeder
             ],
             [
                 'nome' => 'Calculadora Científica', 
-                'marca' => 'Casio', 
+                'marca_id' => '8', 
                 'categoria_id' => 12, 
                 'preco' => 99.90, 
                 'descricao' => 'Calculadora científica, modelo fx-82', 
@@ -87,7 +87,7 @@ class MateriaisSeeder extends Seeder
             ],
             [
                 'nome' => 'Apontador', 
-                'marca' => 'Faber-Castell', 
+                'marca_id' => '4', 
                 'categoria_id' => 2, 
                 'preco' => 2.50, 
                 'descricao' => 'Apontador de lápis com depósito', 
@@ -96,7 +96,7 @@ class MateriaisSeeder extends Seeder
             ],
             [
                 'nome' => 'Canetas Coloridas', 
-                'marca' => 'Pilot', 
+                'marca_id' => '1', 
                 'categoria_id' => 2, 
                 'preco' => 10.00, 
                 'descricao' => 'Canetas esferográficas coloridas, pacote com 12 unidades', 
