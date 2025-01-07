@@ -1,11 +1,7 @@
 @extends('layouts.app')
 @section('content')
 <div class="login-box">
-    <div class="login-logo">
-        <a href="{{ route('admin.home') }}">
-            <img width="200" src = "{{ asset('/images/logo.png') }}" />
-        </a>
-    </div>
+    
     <div class="login-box-body">
         <p class="login-box-msg">
             {{ trans('global.login') }}
@@ -58,6 +54,10 @@
             </a><br>
         @endif
 
+        <a href="{{ url('/register') }}" class="btn btn-secondary btn-block">
+            {{ trans('global.register') }}
+        </a>
+        
 
     </div>
 </div>
