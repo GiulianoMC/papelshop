@@ -62,10 +62,30 @@
                         @can('material_access')
                             <li class="{{ request()->is('admin/materiais') || request()->is('admin/materiais/*') ? 'active' : '' }}">
                                 <a href="{{ route("admin.materiais.index") }}">
-                                    <i class="fa-fw fas fa-building">
+                                    <i class="fa-fw fas fa-boxes">
 
                                     </i>
                                     <span>{{ trans('cruds.material.title') }}</span>
+                                </a>
+                            </li>
+                        @endcan
+                        @can('marca_access')
+                            <li class="{{ request()->is('admin/marcas') || request()->is('admin/marcas/*') ? 'active' : '' }}">
+                                <a href="{{ route("admin.marcas.index") }}">
+                                    <i class="fa-fw fas fa-tags">
+
+                                    </i>
+                                    <span>{{ trans('cruds.marca.title') }}</span>
+                                </a>
+                            </li>
+                        @endcan
+                        @can('categoria_access')
+                            <li class="{{ request()->is('admin/categorias') || request()->is('admin/categorias/*') ? 'active' : '' }}">
+                                <a href="{{ route("admin.categorias.index") }}">
+                                    <i class="fa-fw fas fa-list">
+
+                                    </i>
+                                    <span>{{ trans('cruds.categoria.title') }}</span>
                                 </a>
                             </li>
                         @endcan

@@ -661,4 +661,18 @@ return [
             'updated_at_helper' => '',
         ],
     ],
+    'marca' => [
+        'title'          => 'Marcas',
+        'title_singular' => 'Marca',
+        'fields'         => [
+            'id'                => 'ID',
+            'id_helper'         => '',
+            'nome'              => 'Nome',
+            'nome_helper'       => 'Nome da marca',
+            'created_at'        => 'Criado em',
+            'created_at_helper' => '',
+            'updated_at'        => 'Atualizado em',
+            'updated_at_helper' => '',
+        ],
+    ],
 ];

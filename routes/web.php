@@ -85,4 +85,14 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::delete('materiais/massDestroy', 'MaterialController@massDestroy')->name('materiais.massDestroy');
     Route::delete('materiais/destroy/{material}', 'MaterialController@destroy')->name('materiais.destroy');
     Route::resource('materiais', 'MaterialController');
+
+    //Marca
+    Route::delete('marcas/massDestroy', 'MarcaController@massDestroy')->name('marcas.massDestroy');
+    Route::delete('marcas/destroy/{material}', 'MarcaController@destroy')->name('marcas.destroy');
+    Route::resource('marcas', 'MarcaController');
+
+    //Marca
+    Route::delete('categorias/massDestroy', 'CategoriaController@massDestroy')->name('categorias.massDestroy');
+    Route::delete('categorias/destroy/{material}', 'CategoriaController@destroy')->name('categorias.destroy');
+    Route::resource('categorias', 'CategoriaController');
 });
