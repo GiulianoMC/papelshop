@@ -38,7 +38,7 @@ class MaterialController extends Controller
 
     public function store(StoreMaterialRequest $request)
     {
-        $material = Material::create($request->all());
+        Material::create($request->all());
 
         return redirect()->route('admin.materiais.index');
     }
