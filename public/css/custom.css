@@ -55,3 +55,81 @@ table.dataTable thead .sorting_desc {
     padding-left: 0px;
     padding-right: 0px;
 }
+
+
+.material-home-grid-card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    height: 100%;
+}
+
+.material-home-grid-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.material-home-grid-content {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.material-home-grid-image {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    transition: opacity 0.3s ease;
+}
+
+.material-home-grid-image:hover {
+    opacity: 0.8; 
+}
+
+.material-home-grid-description {
+    font-size: 1.25em;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.material-home-grid-details {
+    font-size: 0.9em;
+    color: #555;
+}
+
+.material-home-grid-details div {
+    margin-bottom: 8px;
+}
+
+.material-home-grid-details span {
+    display: block;
+    font-size: 0.95em;
+}
+
+.material-home-grid-details strong {
+    font-weight: bold;
+    color: #333;
+}
+
+.material-home-grid-details span {
+    color: #777;
+}
+
+.material-home-grid-description, .material-home-grid-details {
+    transition: color 0.3s ease;
+}
+
+.material-home-grid-description:hover, .material-home-grid-details:hover {
+    color: #009688;
+}
+
+.material-home-grid-card a {
+    text-decoration: none;
+    color: inherit;
+}
