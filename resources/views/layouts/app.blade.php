@@ -13,6 +13,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/iCheck/1.0.2/skins/all.css" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,400,400i,600,600i,700&display=swap&subset=latin-ext" rel="stylesheet" />
+    <link href="{{ asset('css/custom.css') }}" rel="stylesheet" />
     @yield('styles')
 </head>
 <style>
@@ -33,12 +34,28 @@
             color: #fff;
         }
         .header {
-            padding: 15px 0;
-            text-align: center;
+            display: flex;
+            justify-content: space-between; /* Mantém os elementos com o máximo de espaço possível entre eles */
+            align-items: center; /* Alinha verticalmente o logo e o ícone */
+            padding: 15px 15%; /* Adiciona um espaçamento de 30px nas laterais */
+            width: 100%; /* Garante que ocupe toda a largura disponível */
+            box-sizing: border-box; /* Inclui o padding no cálculo do tamanho do elemento */
         }
-        .header img {
-            max-width: 120px; 
-            height: auto;   
+
+        .header .logo {
+            max-width: 120px;
+            height: auto;
+        }
+
+        .header .login-icon {
+            display: flex;
+            justify-content: flex-end; /* Garante que o ícone de login fique à direita */
+            align-items: center;
+        }
+
+        .header .login-icon img {
+            width: 40px;
+            height: 40px;
         }
         .footer {
             margin-top: auto; 
@@ -52,11 +69,24 @@
             max-width: 80px; 
             height: auto;   
         }
+
+        .login-icon-image {
+            width: 40px; 
+            height: 40px;
+        }
 </style>
 
 <body class="hold-transition login-page">
-    <header class="header text-white text-center p-2">
-        <img src="{{ asset('images/logo.png') }}"  alt="Logo">
+    <header class="header text-white p-2 d-flex justify-content-between align-items-center">
+        <!-- Logo que aponta para a rota / -->
+        <a href="{{ url('/') }}">
+            <img src="{{ asset('images/logo.png') }}" alt="Logo" class="logo">
+        </a>
+
+        <!-- Ícone de login como imagem -->
+        <a href="/login" class="login-icon">
+            <img src="{{ asset('images/login_icon.png') }}" alt="Login" class="login-icon-image">
+        </a>
     </header>
 
     @yield('content')

@@ -2,7 +2,7 @@
     <section class="sidebar" style="height: auto;">
         <ul class="sidebar-menu tree" data-widget="tree">
             <li>
-                <a href="{{ route("admin.home") }}">
+                <a href="{{ route("/") }}">
                     <i class="fas fa-fw fa-tachometer-alt">
 
                     </i>

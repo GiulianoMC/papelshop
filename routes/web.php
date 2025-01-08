@@ -1,6 +1,7 @@
 <?php
 
-Route::redirect('/', '/login');
+// Route::redirect('/', '/login');
+Route::get('/', 'Admin\HomeController@home')->name('/');
 Route::redirect('/home', '/admin');
 Auth::routes();
 
