@@ -14,6 +14,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,400,400i,600,600i,700&display=swap&subset=latin-ext" rel="stylesheet" />
     <link href="{{ asset('css/custom.css') }}" rel="stylesheet" />
+
     @yield('styles')
 </head>
 <style>
@@ -57,6 +58,13 @@
             width: 40px;
             height: 40px;
         }
+
+        .header .login-icon a {
+            text-decoration: none;
+            background-color: #FFFFFF;
+            
+        }
+        
         .footer {
             margin-top: auto; 
             padding: 20px 0;
@@ -86,6 +94,7 @@
         <!-- Ícone de login como imagem -->
         <a href="/login" class="login-icon">
             <img src="{{ asset('images/login_icon.png') }}" alt="Login" class="login-icon-image">
+            <p style="color: white; margin-left: 10px">Entre aqui ou <br>Cadastrar-se</p>
         </a>
     </header>
 
