@@ -3,6 +3,9 @@
 // Route::redirect('/', '/login');
 Route::get('/', 'Admin\HomeController@home')->name('/');
 Route::redirect('/home', '/admin');
+
+Route::get('material/{uuid}', 'Admin\MaterialController@showmaterial')->name('material');
+
 Auth::routes();
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'middleware' => ['auth']], function () {

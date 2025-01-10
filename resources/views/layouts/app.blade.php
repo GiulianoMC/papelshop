@@ -76,7 +76,7 @@
         }
 </style>
 
-<body class="hold-transition login-page">
+<body class="hold-transition login-page" style="background-color: white;">
     <header class="header text-white p-2 d-flex justify-content-between align-items-center">
         <!-- Logo que aponta para a rota / -->
         <a href="{{ url('/') }}">
