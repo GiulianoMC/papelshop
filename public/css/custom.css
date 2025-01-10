@@ -133,3 +133,165 @@ table.dataTable thead .sorting_desc {
     text-decoration: none;
     color: inherit;
 }
+
+.tres_single-product-page-description-icon-button {
+    width: 44px;
+    display: flex;
+    align-items: flex-start;
+    border-radius: 100px;
+    background-color: var(--dl-color-neutral_high-lightest);
+}
+
+.tres_single-product-page-description-icarrowleft {
+    width: 24px;
+    height: 24px;
+}
+
+.tres_single-product-page-description-frame120 {
+    gap: 20px;
+    display: flex;
+    align-items: flex-start;
+}
+
+.tres_single-product-page-description-frame1171274930 {
+    gap: 12px;
+    display: flex;
+    align-self: stretch;
+    align-items: flex-start;
+    flex-shrink: 0;
+}
+
+.tres_single-product-page-description-text082 {
+    color: var(--dl-color-neutral_low-darkest);
+    height: auto;
+    flex-grow: 1;
+    font-size: 20px;
+    align-self: stretch;
+    font-style: Semi Bold;
+    text-align: left;
+    font-weight: 700;
+    line-height: 139.9999976158142%;
+    font-stretch: normal;
+    text-decoration: none;
+}
+
+.tres_single-product-page-description-frame17 {
+    gap: 4px;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+}
+
+.tres_single-product-page-description-text086 {
+    color: var(--dl-color-primary-darkest);
+    height: auto;
+    font-size: 24px;
+    font-style: Bold;
+    text-align: left;
+    font-weight: 700;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
+}
+
+.container-product {
+    flex-direction: row;
+    align-items: center;
+    padding-right: 12%;
+    padding-left: 12%;
+    position: relative;
+    background: white;
+    left: 0px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+@media (max-width: 768px) {
+    .container-product {
+        flex-direction: column;
+        padding-right: 5%; 
+        padding-left: 5%;
+    }
+}
+
+.tres_single-product-page-description-default-button {
+    width: 100%;
+    display: flex;
+    padding: 18px 16px;
+    align-items: flex-start;
+    border-radius: 100px;
+    justify-content: center;
+    background-color: #2c88d9;
+    border: none;
+    margin-top: 48px;
+}
+
+.tres_single-product-page-description-wrapper41 {
+    gap: 12px;
+    display: flex;
+    flex-grow: 1;
+    align-items: center;
+    justify-content: center;
+}
+
+.tres_single-product-page-description-text096 {
+    color: white;
+    height: auto;
+    font-size: 16px;
+    font-style: Semi Bold;
+    text-align: center;
+    font-weight: 700;
+    line-height: 139.9999976158142%;
+    font-stretch: normal;
+    text-decoration: none;
+}
+
+.tres_single-product-page-description-text002 {
+    color: var(--dl-color-primary-darkest);
+    height: auto;
+    font-size: 12px;
+    font-style: Bold;
+    text-align: left;
+    font-stretch: normal;
+    text-decoration: none;
+}
+
+.tres_single-product-page-description-icexternallink {
+    width: 20px;
+    height: 20px;
+}
+
+.panel-body {
+    width: 100%;
+    margin: auto;
+    
+}
+
+.quatro_home-grid-wrapper74 {
+    gap: 4px;
+    display: flex;
+    align-self: stretch;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.container-img-product {
+    border: 1px solid #F0F1F5;
+    max-width: 500px;
+    width: 100%;
+    border-radius: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    object-fit: contain;
+    object-position: center;
+    padding: 16px
+}
+
+.img-product {
+    width: 100%;
+    max-width: 255px;
+    height: 100%
+}
