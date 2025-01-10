@@ -88,6 +88,14 @@
                             @endif
                         </div>
 
+                        <div class="form-group {{ $errors->has('imagem') ? 'has-error' : '' }}">
+                            <label for="imagem">{{ trans('cruds.material.fields.imagem') }}*</label>
+                            <input type="file" id="imagem" name="imagem" class="form-control" required>
+                            @if($errors->has('imagem'))
+                                <p class="help-block">{{ $errors->first('imagem') }}</p>
+                            @endif
+                        </div>
+
                         <div class="form-group">
                             <label for="disponivel">{{ trans('cruds.material.fields.disponivel') }}</label>
 

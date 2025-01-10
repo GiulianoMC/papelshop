@@ -638,6 +638,7 @@ return [
             'descricao'         => 'Descrição',
             'descricao_helper'  => 'Descrição detalhada do material',
             'data_compra'       => 'Data de Compra',
+            'imagem'            => 'Imagem',
             'data_compra_helper' => 'Data em que o material foi adquirido',
             'disponivel'        => 'Disponível',
             'disponivel_helper' => 'Indica se o material está disponível',

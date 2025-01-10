@@ -14,14 +14,18 @@ class Materiais extends Migration
     public function up()
     {
         Schema::create('materiais', function (Blueprint $table) {
-            $table->bigIncrements('id'); // Cria a chave primária como 'unsignedBigInteger'
-            $table->string('nome'); // Nome do material escolar
-            $table->decimal('preco', 8, 2); // Preço do material (até 999,999.99)
-            $table->text('descricao')->nullable(); // Descrição do material
-            $table->date('data_compra')->nullable(); // Data de compra do material
-            $table->boolean('disponivel')->default(true); // Disponibilidade (sim ou não)
-            $table->timestamps(); // Cria 'created_at' e 'updated_at'
+            $table->bigIncrements('id'); // Chave primária
+            $table->string('nome'); // Nome do material
+            $table->decimal('preco', 8, 2); // Preço
+            $table->text('descricao')->nullable(); // Descrição
+            $table->date('data_compra')->nullable(); // Data de compra
+            $table->boolean('disponivel')->default(true); // Disponibilidade
+            $table->binary('imagem')->nullable(); // Coluna para armazenar a imagem em formato binário (BLOB)
+            $table->timestamps(); // Data de criação e atualização
         });
+
+        // Alterar a coluna 'imagem' para MEDIUMBLOB
+        DB::statement('ALTER TABLE materiais MODIFY imagem MEDIUMBLOB');
     }
 
     /**

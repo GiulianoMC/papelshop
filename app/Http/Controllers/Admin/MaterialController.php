@@ -38,7 +38,21 @@ class MaterialController extends Controller
 
     public function store(StoreMaterialRequest $request)
     {
-        Material::create($request->all());
+
+        // Inicializa o array de dados com todos os campos do request
+        $data = $request->all();
+
+        //dd($data);
+
+        // Verifica se há imagem no formulário
+        if ($request->hasFile('imagem')) {
+            // Obtém o conteúdo binário da imagem
+            $image = $request->file('imagem');
+            $data['imagem'] = file_get_contents($image);
+        }
+
+        // Cria o material
+        Material::create($data);
 
         return redirect()->route('admin.materiais.index');
     }
