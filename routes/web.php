@@ -6,6 +6,13 @@ Route::redirect('/home', '/admin');
 
 Route::get('material/{uuid}', 'Admin\MaterialController@showmaterial')->name('material');
 
+Route::get('/carrinho', 'Admin\CarrinhoController@index')->name('carrinho');
+
+Route::post('/carrinho/adicionar/{materialId}', 'Admin\CarrinhoController@adicionarAoCarrinho')->name('carrinho.adicionar');
+
+Route::delete('/carrinho/remover/{materialId}', 'Admin\CarrinhoController@removerDoCarrinho')->name('carrinho.deletar');
+
+
 Auth::routes();
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'middleware' => ['auth']], function () {
