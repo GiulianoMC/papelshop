@@ -4,7 +4,7 @@
 Route::get('/', 'Admin\HomeController@home')->name('/');
 Route::redirect('/home', '/admin');
 
-Route::get('material/{uuid}', 'Admin\MaterialController@showmaterial')->name('material');
+Route::get('material/{id}', 'Admin\MaterialController@showmaterial')->name('material.show');
 
 Route::get('/carrinho', 'Admin\CarrinhoController@index')->name('carrinho');
 
