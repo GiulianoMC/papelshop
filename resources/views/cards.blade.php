@@ -33,32 +33,34 @@
                                         <div class="material-home-grid-card">
                                             <img class="material-home-grid-image">
                                             <div class="material-home-grid-content">
-                                                <a style="text-decoration: none;" href="/material/{{ $material['id'] }}">
-                                                    <div class="material-home-grid-description">
-                                                        <span>{{ $material['nome'] }}</span>
-                                                    </div>
-                                                    <div class="material-home-grid-details">
-                                                        <div>
-                                                            <span><strong>Categoria:</strong> 
-                                                                {{ $categorias->firstWhere('id', $material['categoria_id'])->nome ?? 'Não definida' }}
-                                                            </span>
+                                                <form action="{{ route('material.show', ['id' => $material['id']]) }}" method="GET" style="text-decoration: none;">
+                                                    <button type="submit" style="all: unset; cursor: pointer;">
+                                                        <div class="material-home-grid-description">
+                                                            <span>{{ $material['nome'] }}</span>
                                                         </div>
-                                                        <div>
-                                                            <span><strong>Marca:</strong> 
-                                                                {{ $marcas->firstWhere('id', $material['marca_id'])->nome ?? 'Não definida' }}
-                                                            </span>
+                                                        <div class="material-home-grid-details">
+                                                            <div>
+                                                                <span><strong>Categoria:</strong> 
+                                                                    {{ $categorias->firstWhere('id', $material['categoria_id'])->nome ?? 'Não definida' }}
+                                                                </span>
+                                                            </div>
+                                                            <div>
+                                                                <span><strong>Marca:</strong> 
+                                                                    {{ $marcas->firstWhere('id', $material['marca_id'])->nome ?? 'Não definida' }}
+                                                                </span>
+                                                            </div>
+                                                            <div>
+                                                                <span><strong>Preço: R</strong> {{ $material['preco'] }}</span>
+                                                            </div>
+                                                            <div>
+                                                                <span><strong>Disponível:</strong> {{ $material['disponivel'] ? 'Sim' : 'Não' }}</span>
+                                                            </div>
+                                                            <div>
+                                                                <span><strong>Descrição:</strong> {{ $material['descricao'] }}</span>
+                                                            </div>
                                                         </div>
-                                                        <div>
-                                                            <span><strong>Preço: R</strong> {{ $material['preco'] }}</span>
-                                                        </div>
-                                                        <div>
-                                                            <span><strong>Disponível:</strong> {{ $material['disponivel'] ? 'Sim' : 'Não' }}</span>
-                                                        </div>
-                                                        <div>
-                                                            <span><strong>Descrição:</strong> {{ $material['descricao'] }}</span>
-                                                        </div>
-                                                    </div>
-                                                </a>
+                                                    </button>
+                                                </form>
                                             </div>
                                         </div>
                                 </div>
