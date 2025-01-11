@@ -12,7 +12,12 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.4.3/css/AdminLTE.min.css" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/iCheck/1.0.2/skins/all.css" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;600&display=swap" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,400,400i,600,600i,700&display=swap&subset=latin-ext" rel="stylesheet" />
+    
+
+    
     <link href="{{ asset('css/custom.css') }}" rel="stylesheet" />
     @yield('styles')
 </head>
@@ -39,7 +44,6 @@
             align-items: center; /* Alinha verticalmente o logo e o ícone */
             padding: 15px 15%; /* Adiciona um espaçamento de 30px nas laterais */
             width: 100%; /* Garante que ocupe toda a largura disponível */
-            box-sizing: border-box; /* Inclui o padding no cálculo do tamanho do elemento */
         }
 
         .header .logo {

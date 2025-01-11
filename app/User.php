@@ -31,6 +31,7 @@ class User extends Authenticatable
     ];
 
     protected $fillable = [
+        'id',
         'name',
         'email',
         'team_id',
@@ -87,5 +88,10 @@ class User extends Authenticatable
     public function clientes()
     {
         return $this->belongsToMany(Cliente::class);
+    }
+
+    public function carrinhos()
+    {
+        return $this->hasMany(Carrinho::class);
     }
 }
