@@ -129,4 +129,63 @@ class MaterialController extends Controller
 
         return response(null, Response::HTTP_NO_CONTENT);
     }
+
+    public function showmaterial(int $id)
+    {
+        // Buscar o material pelo ID
+        $materialShow = Material::findOrFail($id);
+
+        // Carregar relações necessárias
+        $materialShow->load('marcas', 'categorias');
+
+        // Formatar valores para exibição
+        $material = [
+            'id' => $materialShow->id,
+            'nome' => $materialShow->nome,
+            'marca_id' => $materialShow->marca_id,
+            'categoria_id' => $materialShow->categoria_id,
+            'preco' => number_format($materialShow->preco, 2, ',', '.'),
+            'descricao' => $materialShow->descricao,
+            'data_compra' => $materialShow->data_compra,
+            'disponivel' => $materialShow->disponivel
+        ];
+
+        // Carregar categorias e marcas para exibição geral
+        $categoria = Categoria::find($materialShow->categoria_id);
+        $marca = Marca::find($materialShow->marca_id);
+
+        // Mandar tambem sugestões de materiais
+        $categorias = Categoria::all();
+        $marcas = Marca::all();
+        $materiais = Material::with('marcas', 'categorias')
+            ->inRandomOrder()
+            ->paginate(4)
+            ->toArray();
+
+        $items = array_fill(0, count($materiais['data']), null);
+
+        foreach ($materiais['data'] as $materialSug) {
+            try {
+                $preco = $materialSug['preco'];
+                $descricao = $materialSug['descricao'];
+                $data_compra = $materialSug['data_compra'];
+                $disponivel = $materialSug['disponivel'];
+
+                $materialSug['preco'] = number_format($preco, 2, ',', '.');
+                $materialSug['data_compra'] = \Carbon\Carbon::parse($data_compra)->format('d/m/Y');
+                $materialSug['disponivel'] = $disponivel ? 'Sim' : 'Não';
+
+                $posicao = array_search(null, $items);
+                if ($posicao !== false) {
+                    $items[$posicao] = $materialSug;
+                } else {
+                    $items[] = $materialSug;
+                }
+            } catch (\Exception $e) {
+                continue;
+            }
+        }
+
+        return view('material', compact('material', 'categoria', 'marca', 'materiais', 'categorias', 'marcas', 'items'));
+    }
 }

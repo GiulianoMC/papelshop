@@ -3,69 +3,70 @@
     <div class="col-lg-12" style="padding: 0">
 
             <div class="panel-body">
-                    
-                <div class="container-product">
-                        <div class="container-img-product">
-                            <img class="img-product" src="{{ asset('')}}"
-                                alt="ImageI837" />
-                        </div>
-                    <div style=" width: 100%">
-                        <div class="tres_single-product-page-description-frame12">
-                                <div class="tres_single-product-page-description-frame1171274930"><span
-                                        class="tres_single-product-page-description-text082"><span>
-                                            {{ $material['nome'] }}
-                                        </span></span>
+                <form action="{{ route('carrinho.adicionar', $material['id']) }}" method="POST">
+                    @csrf
+                    <div class="container-product">
+                            <div class="container-img-product">
+                                <img class="img-product" src="{{ asset('')}}"
+                                    alt="ImageI837" />
+                            </div>
+                        <div style=" width: 100%">
+                            <div class="tres_single-product-page-description-frame12">
+                                    <div class="tres_single-product-page-description-frame1171274930"><span
+                                            class="tres_single-product-page-description-text082"><span>
+                                                {{ $material['nome'] }}
+                                            </span></span>
+                                    </div>
+                            </div>
+                            <div
+                                style="display: flex; justify-content: space-between; padding-top: 10px; border-top: 1px solid #F0F1F5; margin-top: 10px">
+                                <div class="tres_single-product-page-description-frame17"><span
+                                        class="tres_single-product-page-description-text086"><span>
+                                            R$ {{ $material['preco'] }}
+                                        </span>
+                                    </span>
                                 </div>
-                        </div>
-                        <div
-                            style="display: flex; justify-content: space-between; padding-top: 10px; border-top: 1px solid #F0F1F5; margin-top: 10px">
-                            <div class="tres_single-product-page-description-frame17"><span
-                                    class="tres_single-product-page-description-text086"><span>
-                                        R$ {{ $material['preco'] }}
-                                    </span>
-                                </span>
                             </div>
-                        </div>
 
-                        <div
-                            style="display: flex; justify-content: space-between; padding-top: 10px; margin-top: 10px">
-                            <div class="tres_single-product-page-description-frame17"><span
-                                    class="tres_single-product-page-description-text002"><span> {{ $material['descricao'] }}
+                            <div
+                                style="display: flex; justify-content: space-between; padding-top: 10px; margin-top: 10px">
+                                <div class="tres_single-product-page-description-frame17"><span
+                                        class="tres_single-product-page-description-text002"><span> {{ $material['descricao'] }}
+                                        </span>
                                     </span>
-                                </span>
-                            </div>
-                        </div>
-
-                        
-                        <div
-                            style="display: flex; justify-content: space-between; padding-top: 10px; margin-top: 10px">
-                            <div class="tres_single-product-page-description-frame17"><span
-                                    class="tres_single-product-page-description-text002"><span> Categoria: {{ $categoria['nome'] }}
-                                    </span>
-                                </span>
-                            </div>
-                        </div>
-
-                        <div
-                            style="display: flex; justify-content: space-between; padding-top: 10px; margin-top: 10px">
-                            <div class="tres_single-product-page-description-frame17"><span
-                                    class="tres_single-product-page-description-text002"><span> Marca: {{ $marca['nome'] }}
-                                    </span>
-                                </span>
-                            </div>
-                        </div>
-
-                        <a style="text-decoration: none;" target="_blank" href="/carrinho"
-                                class="quatro_home-grid-wrapper74">                        
-                           <button target="_blank" href="/carrinho"
-                                class="tres_single-product-page-description-default-button">
-                                <div class="tres_single-product-page-description-wrapper41"><span
-                                        class="tres_single-product-page-description-text096"><span>Comprar o Material</span></span><img
-                                        src="{{ asset('images/produto/icexternallinki837-y7no.svg') }}"
-                                        alt="icexternallinkI837" class="tres_single-product-page-description-icexternallink" />
                                 </div>
-                            </button>
-                        </a>
+                            </div>
+
+                            
+                            <div
+                                style="display: flex; justify-content: space-between; padding-top: 10px; margin-top: 10px">
+                                <div class="tres_single-product-page-description-frame17"><span
+                                        class="tres_single-product-page-description-text002"><span> Categoria: {{ $categoria['nome'] }}
+                                        </span>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div
+                                style="display: flex; justify-content: space-between; padding-top: 10px; margin-top: 10px">
+                                <div class="tres_single-product-page-description-frame17"><span
+                                        class="tres_single-product-page-description-text002"><span> Marca: {{ $marca['nome'] }}
+                                        </span>
+                                    </span>
+                                </div>
+                            </div>
+
+                            
+                                <button type="submit" class="tres_single-product-page-description-default-button">
+                                    <div class="tres_single-product-page-description-wrapper41">
+                                        <span class="tres_single-product-page-description-text096">
+                                            <span>Comprar o Material</span>
+                                        </span>
+                                        <img src="{{ asset('images/produto/icexternallinki837-y7no.svg') }}"
+                                            alt="icexternallinkI837" class="tres_single-product-page-description-icexternallink" />
+                                    </div>
+                                </button>
+                        </form>
 
                         
                     </div>
