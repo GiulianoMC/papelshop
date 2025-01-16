@@ -29,6 +29,7 @@
                                     <th>{{ trans('cruds.material.fields.marca') }}</th>
                                     <th>{{ trans('cruds.material.fields.categoria') }}</th>
                                     <th>{{ trans('cruds.material.fields.preco') }}</th>
+                                    <th>{{ trans('cruds.material.fields.imagem') }}</th>
                                     <th>{{ trans('cruds.material.fields.disponivel') }}</th>
                                     <th>&nbsp;</th>
                                 </tr>
@@ -42,6 +43,7 @@
                                         <td>{{ $material->marcas->nome ?? 'Marca não disponível' }}</td>
                                         <td>{{ $material->categorias->nome ?? 'Categoria não disponível' }}</td>
                                         <td>{{ $material->preco ?? '' }}</td>
+                                        <td>{{ $material->imagem ?? '' }}</td>
                                         <td>{{ $material->disponivel ? trans('global.yes') : trans('global.no') }}</td>
                                         <td>
                                             @can('material_show')

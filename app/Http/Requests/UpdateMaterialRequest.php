@@ -31,6 +31,12 @@ class UpdateMaterialRequest extends FormRequest
             'nome' => [
                 'required',
             ],
+            'imagem' => [
+                'required',
+            ],
+            'data_compra' => [
+                'required',
+            ],
         ];
     }
 }

@@ -65,7 +65,6 @@ class MaterialController extends Controller
         if (!$material) {
             return redirect()->route('admin.materiais.index')->with('error', 'Material não encontrado');
         }
-
         $categorias = Categoria::all();
 
         $marcas = Marca::all();
@@ -73,12 +72,32 @@ class MaterialController extends Controller
         return view('admin.materiais.edit', compact('material', 'categorias', 'marcas'));
     }
 
-    public function update(UpdateMaterialRequest $request, Material $material)
+    public function update(UpdateMaterialRequest $request, $id)
     {
-        $material->update($request->all());
 
+        $material = Material::find($id);
+
+        // Obtém os dados do request
+        $data = $request->all();
+        // Verifica se uma nova imagem foi enviada
+        if ($request->hasFile('imagem')) {
+            $image = $request->file('imagem');
+            $data['imagem'] = file_get_contents($image); // Converte a imagem para binário
+        } else {
+            // Garante que a imagem não seja sobrescrita se nenhuma nova for enviada
+            unset($data['imagem']);
+        }
+
+        // Atualiza o material
+        $material->update($data);
+
+       
+
+        // Redireciona para a lista de materiais
         return redirect()->route('admin.materiais.index');
     }
+
+
 
     public function show($id)
     {
@@ -88,7 +107,7 @@ class MaterialController extends Controller
         if (!$material) {
             return redirect()->route('admin.materiais.index')->with('error', 'Material não encontrado');
         }
-
+        
         $categorias = Categoria::all();
 
         $marcas = Marca::all();
@@ -169,5 +188,4 @@ class MaterialController extends Controller
 
         return view('material', compact('material', 'categoria', 'marca', 'materiais', 'categorias', 'marcas', 'items'));
     }
-
 }

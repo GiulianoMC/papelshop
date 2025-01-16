@@ -13,7 +13,7 @@ class Material extends Model
     protected $primaryKey = 'id';
 
     // Atributos que podem ser preenchidos em massa
-    protected $fillable = ['nome', 'marca_id', 'categoria_id', 'preco', 'descricao', 'data_compra','imagem', 'disponivel'];
+    protected $fillable = ['nome', 'marca_id', 'categoria_id', 'preco', 'descricao', 'data_compra', 'imagem', 'disponivel'];
 
     // Relação com a tabela 'categorias'
     public function categorias()
