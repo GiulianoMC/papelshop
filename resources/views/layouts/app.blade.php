@@ -91,14 +91,14 @@
 <body class="hold-transition login-page" style="background-color: white;">
     <header class="header text-white p-2 d-flex justify-content-between align-items-center">
         <!-- Logo que aponta para a rota / -->
-        <a href="{{ url('/') }}">
+        <a href="{{ url('/') }}" style="margin-left: 20px">
             <img src="{{ asset('images/logo.png') }}" alt="Logo" class="logo">
         </a>
 
         <!-- Ícone de login como imagem -->
         <a href="/login" class="login-icon">
             <img src="{{ asset('images/login_icon.png') }}" alt="Login" class="login-icon-image">
-            <p style="color: white; margin-left: 10px">Entre aqui ou <br>Cadastrar-se</p>
+            <p style="color: white; margin-left: 10px; margin-right: 70px">Entre aqui ou <br>Cadastrar-se</p>
         </a>
     </header>
 
