@@ -11,8 +11,9 @@
                 </div>
                 <div class="panel-body">
 
-                    <form action="{{ route("admin.materiais.update", [$material->id]) }}" method="PUT" enctype="multipart/form-data">
+                    <form action="{{ route('admin.materiais.update', [$material->id]) }}" method="POST" enctype="multipart/form-data">
                         @csrf
+                        @method('PUT')
                         <div class="form-group {{ $errors->has('nome') ? 'has-error' : '' }}">
                             <label for="nome">{{ trans('cruds.material.fields.nome') }}*</label>
                             <input type="text" id="nome" name="nome" class="form-control" value="{{ old('nome', isset($material) ? $material->nome : '') }}" required>
@@ -85,6 +86,14 @@
                                 <p class="help-block">
                                     {{ $errors->first('data_compra') }}
                                 </p>
+                            @endif
+                        </div>
+
+                        <div class="form-group {{ $errors->has('imagem') ? 'has-error' : '' }}">
+                            <label for="imagem">{{ trans('cruds.material.fields.imagem') }}*</label>
+                            <input type="file" id="imagem" name="imagem" class="form-control" required>
+                            @if($errors->has('imagem'))
+                                <p class="help-block">{{ $errors->first('imagem') }}</p>
                             @endif
                         </div>
 

@@ -65,7 +65,6 @@ class MaterialController extends Controller
         if (!$material) {
             return redirect()->route('admin.materiais.index')->with('error', 'Material não encontrado');
         }
-
         $categorias = Categoria::all();
 
         $marcas = Marca::all();
@@ -73,12 +72,32 @@ class MaterialController extends Controller
         return view('admin.materiais.edit', compact('material', 'categorias', 'marcas'));
     }
 
-    public function update(UpdateMaterialRequest $request, Material $material)
+    public function update(UpdateMaterialRequest $request, $id)
     {
-        $material->update($request->all());
 
+        $material = Material::find($id);
+
+        // Obtém os dados do request
+        $data = $request->all();
+        // Verifica se uma nova imagem foi enviada
+        if ($request->hasFile('imagem')) {
+            $image = $request->file('imagem');
+            $data['imagem'] = file_get_contents($image); // Converte a imagem para binário
+        } else {
+            // Garante que a imagem não seja sobrescrita se nenhuma nova for enviada
+            unset($data['imagem']);
+        }
+
+        // Atualiza o material
+        $material->update($data);
+
+       
+
+        // Redireciona para a lista de materiais
         return redirect()->route('admin.materiais.index');
     }
+
+
 
     public function show($id)
     {
@@ -88,7 +107,7 @@ class MaterialController extends Controller
         if (!$material) {
             return redirect()->route('admin.materiais.index')->with('error', 'Material não encontrado');
         }
-
+        
         $categorias = Categoria::all();
 
         $marcas = Marca::all();
@@ -110,63 +129,4 @@ class MaterialController extends Controller
 
         return response(null, Response::HTTP_NO_CONTENT);
     }
-
-    public function showmaterial(int $id)
-    {
-        // Buscar o material pelo ID
-        $materialShow = Material::findOrFail($id);
-
-        // Carregar relações necessárias
-        $materialShow->load('marcas', 'categorias');
-
-        // Formatar valores para exibição
-        $material = [
-            'nome' => $materialShow->nome,
-            'marca_id' => $materialShow->marca_id,
-            'categoria_id' => $materialShow->categoria_id,
-            'preco' => number_format($materialShow->preco, 2, ',', '.'),
-            'descricao' => $materialShow->descricao,
-            'data_compra' => $materialShow->data_compra,
-            'disponivel' => $materialShow->disponivel
-        ];
-
-        // Carregar categorias e marcas para exibição geral
-        $categoria = Categoria::find($materialShow->categoria_id);
-        $marca = Marca::find($materialShow->marca_id);
-
-        // Mandar tambem sugestões de materiais
-        $categorias = Categoria::all();
-        $marcas = Marca::all();
-        $materiais = Material::with('marcas', 'categorias')
-            ->inRandomOrder()
-            ->paginate(4)
-            ->toArray();
-
-        $items = array_fill(0, count($materiais['data']), null);
-
-        foreach ($materiais['data'] as $material) {
-            try {
-                $preco = $material['preco'];
-                $descricao = $material['descricao'];
-                $data_compra = $material['data_compra'];
-                $disponivel = $material['disponivel'];
-
-                $material['preco'] = number_format($preco, 2, ',', '.');
-                $material['data_compra'] = \Carbon\Carbon::parse($data_compra)->format('d/m/Y');
-                $material['disponivel'] = $disponivel ? 'Sim' : 'Não';
-
-                $posicao = array_search(null, $items);
-                if ($posicao !== false) {
-                    $items[$posicao] = $material;
-                } else {
-                    $items[] = $material;
-                }
-            } catch (\Exception $e) {
-                continue;
-            }
-        }
-
-        return view('material', compact('material', 'categoria', 'marca', 'materiais', 'categorias', 'marcas', 'items'));
-    }
-
 }
