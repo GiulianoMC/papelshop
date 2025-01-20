@@ -96,11 +96,21 @@
             <img src="{{ asset('images/logo.png') }}" alt="Logo" class="logo">
         </a>
 
+        <!-- Ícone do Carrinho (exibido apenas na página específica) -->
+        @if (Route::currentRouteName() === '/')
+            <a href="{{ route('carrinho') }}" class="me-3" style="text-decoration: none; color: white;">
+                <i class="fas fa-shopping-cart" style="font-size: 24px;"></i>
+            </a>
+        @endif
+
         <!-- Condição para exibir o nome da pessoa logada ou o link para login/cadastro -->
         @if (Auth::check())
             <!-- Quando o usuário está logado -->
             <div class="user-info d-flex align-items-center" style="height: 100%;">
-                <p style="color: white; margin: 0 30px 0 0; font-weight: bold;font-size: 15px;">Bem-vindo(a), {{ Auth::user()->name }}!</p>
+            <p style="color: white; margin: 0 30px 0 0; font-weight: bold; font-size: 15px;">
+                <a href="{{ route('login') }}" style="text-decoration: none; color: white;">Bem-vindo(a), {{ Auth::user()->name }}!</a>
+            </p>
+
                 <a href="{{ route('logout') }}" 
                 onclick="event.preventDefault(); document.getElementById('logout-form').submit();" 
                 style="color: white; text-decoration: none;margin: 0 30px 0 0;">
