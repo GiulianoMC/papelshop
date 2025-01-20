@@ -15,6 +15,7 @@ class CreateCarrinhoTable extends Migration
     {
         Schema::create('carrinhos', function (Blueprint $table) {
             $table->increments('id'); 
+            $table->integer('quantidade')->default(1);
             $table->unsignedBigInteger('material_id');
             $table->unsignedInteger('user_id');
             $table->timestamps();

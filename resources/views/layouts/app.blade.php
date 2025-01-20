@@ -8,6 +8,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ trans('panel.site_title') }}</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.4.3/css/AdminLTE.min.css" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/iCheck/1.0.2/skins/all.css" rel="stylesheet" />
@@ -95,12 +96,31 @@
             <img src="{{ asset('images/logo.png') }}" alt="Logo" class="logo">
         </a>
 
-        <!-- Ícone de login como imagem -->
-        <a href="/login" class="login-icon">
-            <img src="{{ asset('images/login_icon.png') }}" alt="Login" class="login-icon-image">
-            <p style="color: white; margin-left: 10px; margin-right: 70px">Entre aqui ou <br>Cadastrar-se</p>
-        </a>
+        <!-- Condição para exibir o nome da pessoa logada ou o link para login/cadastro -->
+        @if (Auth::check())
+            <!-- Quando o usuário está logado -->
+            <div class="user-info d-flex align-items-center" style="height: 100%;">
+                <p style="color: white; margin: 0 30px 0 0; font-weight: bold;font-size: 15px;">Bem-vindo(a), {{ Auth::user()->name }}!</p>
+                <a href="{{ route('logout') }}" 
+                onclick="event.preventDefault(); document.getElementById('logout-form').submit();" 
+                style="color: white; text-decoration: none;margin: 0 30px 0 0;">
+                    <i class="fas fa-sign-out-alt" style="font-size: 20px;"></i>
+                </a>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    @csrf
+                </form>
+            </div>
+
+        @else
+            <!-- Quando o usuário não está logado -->
+            <a href="/login" class="login-icon d-flex align-items-center">
+                <img src="{{ asset('images/login_icon.png') }}" alt="Login" class="login-icon-image">
+                <p style="color: white; margin-left: 10px; margin-right: 70px;">Entre aqui ou <br>Cadastrar-se</p>
+            </a>
+        @endif
     </header>
+
+
 
     @yield('content')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>

@@ -138,6 +138,10 @@ class MaterialController extends Controller
         // Carregar relações necessárias
         $materialShow->load('marcas', 'categorias');
 
+        // Conversão da imagem do material em Base64
+        $imagemBlob = $materialShow->imagem; // Certifique-se de que o campo 'imagem' está correto
+        $imagemBase64 = $imagemBlob ? 'data:image/png;base64,' . base64_encode($imagemBlob) : null;
+
         // Formatar valores para exibição
         $material = [
             'id' => $materialShow->id,
@@ -147,14 +151,15 @@ class MaterialController extends Controller
             'preco' => number_format($materialShow->preco, 2, ',', '.'),
             'descricao' => $materialShow->descricao,
             'data_compra' => $materialShow->data_compra,
-            'disponivel' => $materialShow->disponivel
+            'disponivel' => $materialShow->disponivel,
+            'imagem' => $imagemBase64
         ];
 
         // Carregar categorias e marcas para exibição geral
         $categoria = Categoria::find($materialShow->categoria_id);
         $marca = Marca::find($materialShow->marca_id);
 
-        // Mandar tambem sugestões de materiais
+        // Mandar também sugestões de materiais
         $categorias = Categoria::all();
         $marcas = Marca::all();
         $materiais = Material::with('marcas', 'categorias')
@@ -170,10 +175,15 @@ class MaterialController extends Controller
                 $descricao = $materialSug['descricao'];
                 $data_compra = $materialSug['data_compra'];
                 $disponivel = $materialSug['disponivel'];
+                
+                // Conversão da imagem em Base64 para materiais sugeridos
+                $imagemBlob = $materialSug['imagem']; // Certifique-se de que o campo 'imagem' está correto
+                $imagemBase64 = $imagemBlob ? 'data:image/png;base64,' . base64_encode($imagemBlob) : null;
 
                 $materialSug['preco'] = number_format($preco, 2, ',', '.');
                 $materialSug['data_compra'] = \Carbon\Carbon::parse($data_compra)->format('d/m/Y');
                 $materialSug['disponivel'] = $disponivel ? 'Sim' : 'Não';
+                $materialSug['imagem'] = $imagemBase64;
 
                 $posicao = array_search(null, $items);
                 if ($posicao !== false) {
@@ -188,4 +198,5 @@ class MaterialController extends Controller
 
         return view('material', compact('material', 'categoria', 'marca', 'materiais', 'categorias', 'marcas', 'items'));
     }
+
 }

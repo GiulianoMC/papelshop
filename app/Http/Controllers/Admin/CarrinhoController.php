@@ -21,31 +21,63 @@ class CarrinhoController extends Controller
     {
         // Obtém o valor do cookie
         $userId = auth()->id();
-
-        // Se o cookie não existir, retorna uma resposta com nenhum produto
+    
+        // Se o cookie não existir, redireciona para a página de login
         if (!$userId) {
             return redirect('/login');
         }
-
+    
         // Busca os materiais relacionados aos itens do carrinho do usuário logado
         $materiais = Carrinho::where('user_id', $userId)
-            ->with('material') 
+            ->with('material')  // Carrega os materiais relacionados
             ->get()
-            ->pluck('material'); 
-
-        $categorias = Categoria::All();
-        $marcas = Marca::All();
-
-        $precoMateriais = $materiais->sum('preco');
-
-
-        // Retorna a visão com os produtos encontrados e o total do preço formatado
-        return view('carrinho', compact('materiais', 'categorias', 'marcas', 'precoMateriais'));        
+            ->pluck('material');  // Extrai os materiais da coleção
+    
+        // Conversão das imagens dos materiais em Base64 e inclui a quantidade
+        $materiais = $materiais->map(function ($material) use ($userId) {
+            try {
+                // Recupera a quantidade do carrinho
+                $quantidade = Carrinho::where('user_id', $userId)
+                    ->where('material_id', $material->id)
+                    ->value('quantidade');
+    
+                // Recupera a imagem do material
+                $imagemBlob = $material->imagem;
+                $imagemBase64 = $imagemBlob ? 'data:image/png;base64,' . base64_encode($imagemBlob) : null;
+                // Formata os valores
+                $material->preco_formatado = number_format($material->preco * $quantidade, 2, ',', '.');  // Ajusta o preço de acordo com a quantidade
+                $material->data_compra_formatada = \Carbon\Carbon::parse($material->data_compra)->format('d/m/Y');
+                $material->disponivel_formatado = $material->disponivel ? 'Sim' : 'Não';
+                $material->imagem = $imagemBase64;
+                $material->quantidade = $quantidade;  // Adiciona a quantidade
+    
+                return $material;
+            } catch (\Exception $e) {
+                return $material; // Retorna o material sem alterações em caso de erro
+            }
+        });
+    
+        $categorias = Categoria::all();
+        $marcas = Marca::all();
+    
+        // Calcula o total do preço dos materiais (multiplicado pela quantidade)
+        $precoMateriais = $materiais->sum(function ($material) {
+            return $material->preco * $material->quantidade;
+        });
+    
+        // Retorna a visão com os produtos encontrados, a quantidade e o total do preço formatado
+        return view('carrinho', compact('materiais', 'categorias', 'marcas', 'precoMateriais'));
     }
+     
+     
+     
 
-    public function adicionarAoCarrinho($materialId)
+    public function adicionarAoCarrinho($materialId, Request $request)
     {
         $userId = auth()->id();
+        $quantidade = $request->input('quantidade'); 
+
+        //dd($quantidade);
 
         if($userId == null){
             return response()->view('auth.login', ['error' => 'Precisa se logar para adicionar item ao carrinho.']);
@@ -67,6 +99,7 @@ class CarrinhoController extends Controller
         }
 
         Carrinho::create([
+            'quantidade' => $quantidade,
             'material_id' => $materialId,
             'user_id' => $userId
         ]);
