@@ -168,6 +168,19 @@
             text-align: start;
         }
 
+        .form-check{
+            padding: 0px;
+        }
+
+        .form-check-label {
+            margin-top: 4px;
+            margin-left: 2px;
+        }
+
+        .form-check-input {
+            position: relative;
+        }
+
         .btn-continuar-comprando {
             background-color: #ffffff; 
             color: #2c88d9; 
@@ -231,10 +244,12 @@
                                 <div class="d-flex justify-content-between align-items-start">
                                     <div class="row align-items-center flex-grow-1">
                                         <div class="col-auto">
-                                            <img src="{{ asset('images/') }}" alt="Produto" class="me-3" style="border-radius: 10px;">
+                                            <img src="{{ $material->imagem }}" alt="Produto" class="me-3" style="border-radius: 10px;">
                                         </div>
                                         <div class="col">
                                             <h4><strong>{{ $material->nome }}</strong></h4>
+                                            <p><strong>Quantidade:</strong> {{ $material->quantidade }}</p>
+                                            <p>{{ $material->firstWhere('id', $material->quantidade)->nome ?? 'Marca não encontrada' }}</p>
                                             <p>{{ $marcas->firstWhere('id', $material->marca_id)->nome ?? 'Marca não encontrada' }}</p>
                                             <p>{{ $categorias->firstWhere('id', $material->categoria_id)->nome ?? 'Categoria não encontrada' }}</p>
                                             @if($material->descricao != null)
@@ -242,7 +257,7 @@
                                             @endif
                                         </div>
                                         <div class="col-auto">
-                                            <p class="mb-0">Preço: <strong>R$ {{ $material->preco }}</strong></p>
+                                            <p class="mb-0">Preço: <strong>R$ {{ $material->preco_formatado }}</strong></p>
                                         </div>
                                     </div>
                                     <form action="{{ route('carrinho.deletar', $material->id) }}" method="POST" onsubmit="return confirm('Tem certeza que deseja remover este item do carrinho?')">
@@ -273,23 +288,26 @@
                 </div>
                 <div class="entrega border rounded p-3 mt-4 bg-white">
                 <div class="d-flex align-items-center">
-                        <img src="{{ asset('images/caminhao.png') }}" alt="Ícone de pagamento" width="40" height="40" style="margin-right: 10px;">
-                        <h5 class="mb-0" style="font-weight:bold;">ENTREGA</h5>
-                    </div>
-                    <div class="form-check mt-3">
-                        <input class="form-check-input" type="checkbox" id="retiradaLoja">
-                        <label class="form-check-label" for="retiradaLoja">
-                            Retirada na loja
-                        </label>
-                    </div>
-                    <div class="mt-3 d-flex align-items-center">
+                    <img src="{{ asset('images/caminhao.png') }}" alt="Ícone de pagamento" width="40" height="40" style="margin-right: 10px;">
+                    <h5 class="mb-0" style="font-weight: bold;">ENTREGA</h5>
+                </div>
+
+                <div class="form-check mt-3 d-flex align-items-center">
+                    <input class="form-check-input me-2" type="checkbox" id="retiradaLoja">
+                    <span class="form-check-label" for="retiradaLoja">
+                        Retirada na loja
+                    </span>
+                </div>
+
+                <div class="mt-3 d-flex align-items-center">
                     <div class="flex-grow-1 me-2">
                         <input type="text" class="form-control" id="cep" placeholder="Digite seu CEP">
                     </div>
-                    <button type="button" id="buscarCep" class="btn p-0" style="border: none; background: none; padding: 0; margin-left:10px;">
-                        <img src="{{ asset('images/loupe.png') }}" alt="Imagem" style="max-width: 30px; max-height: 30px; object-fit: cover; border: none; ">
+                    <button type="button" id="buscarCep" class="btn p-0" style="border: none; background: none; padding: 0; margin-left: 10px;">
+                        <img src="{{ asset('images/loupe.png') }}" alt="Imagem" style="max-width: 30px; max-height: 30px; object-fit: cover; border: none;">
                     </button>
                 </div>
+
                 <a href="https://buscacepinter.correios.com.br/app/endereco/index.php" target="_blank" class="d-block mt-2" style="color: #2c88d9;">Não lembro meu CEP</a>
                 </div>
                 <div class="mt-4">
@@ -351,6 +369,7 @@
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
     
     <script>
 
