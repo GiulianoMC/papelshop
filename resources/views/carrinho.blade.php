@@ -281,7 +281,7 @@
                     <br>
                     <p>Valor dos materiais: <strong>R$ {{ number_format($precoMateriais, 2, ',', '.') }}</strong></p>
                     <hr>
-                    <p>Frete: <strong>R$ </strong></p>
+                    <p>Frete: <strong id="frete">R$ </strong></p>
                     <div class="valor-total d-flex align-items-center justify-content-center p-2 rounded">
                         <p class="mb-0">Valor total: <strong>R$ </strong></p>
                     </div>
@@ -323,7 +323,7 @@
     </div>
     
     <!-- Modal HTML -->
-    <div class="modal fade" id="cepModal" tabindex="-1" role="dialog" aria-labelledby="cepModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+    <div class="modal" id="cepModal" tabindex="-1" role="dialog" aria-labelledby="cepModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -431,11 +431,49 @@
             var localidade = document.getElementById('localidade').value;
             var uf = document.getElementById('uf').value;
             var numero = document.getElementById('numero').value;
+            var valorFrete = obterValorFrete(uf);
+            document.getElementById('frete').innerText = `R$ ${valorFrete}`;
+
+            
 
             if (numero) {
                 $('#cepModal').modal('hide');
             }
         });
+
+        function obterValorFrete(uf) {
+            var fretes = {
+                'AC': 80.00,  // Acre
+                'AL': 60.00,  // Alagoas
+                'AP': 85.00,  // Amapá
+                'AM': 90.00,  // Amazonas
+                'BA': 55.00,  // Bahia
+                'CE': 65.00,  // Ceará
+                'DF': 50.00,  // Distrito Federal
+                'ES': 40.00,  // Espírito Santo
+                'GO': 45.00,  // Goiás
+                'MA': 70.00,  // Maranhão
+                'MT': 60.00,  // Mato Grosso
+                'MS': 50.00,  // Mato Grosso do Sul
+                'MG': 35.00,  // Minas Gerais
+                'PA': 75.00,  // Pará
+                'PB': 65.00,  // Paraíba
+                'PR': 30.00,  // Paraná
+                'PE': 60.00,  // Pernambuco
+                'PI': 65.00,  // Piauí
+                'RJ': 30.00,  // Rio de Janeiro
+                'RN': 70.00,  // Rio Grande do Norte
+                'RS': 40.00,  // Rio Grande do Sul
+                'RO': 85.00,  // Rondônia
+                'RR': 95.00,  // Roraima
+                'SC': 35.00,  // Santa Catarina
+                'SP': 20.00,  // São Paulo (menor valor)
+                'SE': 55.00,  // Sergipe
+                'TO': 60.00   // Tocantins
+            };
+            
+            return fretes[uf] || 'UF não encontrada';
+        }
 
         document.getElementById('pagamentoBtn').addEventListener('click', function(event) {
             event.preventDefault(); // Evita o redirecionamento padrão
