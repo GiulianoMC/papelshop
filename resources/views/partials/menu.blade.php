@@ -89,6 +89,16 @@
                                 </a>
                             </li>
                         @endcan
+                        @can('frete_access')
+                            <li class="{{ request()->is('admin/fretes') || request()->is('admin/fretes/*') ? 'active' : '' }}">
+                                <a href="{{ route("admin.fretes.index") }}">
+                                    <i class="fa-fw fas fa-boxes">
+
+                                    </i>
+                                    <span>{{ trans('cruds.frete.title') }}</span>
+                                </a>
+                            </li>
+                        @endcan
                     </ul>
                 </li>
             @endcan
@@ -231,6 +241,7 @@
                     </ul>
                 </li>
             @endcan
+
             <!-- @can('user_alert_access')
                 <li class="{{ request()->is('admin/user-alerts') || request()->is('admin/user-alerts/*') ? 'active' : '' }}">
                     <a href="{{ route("admin.user-alerts.index") }}">

@@ -676,4 +676,20 @@ return [
             'updated_at_helper' => '',
         ],
     ],
+    'frete' => [
+        'title'          => 'Fretes',
+        'title_singular' => 'Frete',
+        'fields'         => [
+            'id'                => 'ID',
+            'id_helper'         => '',
+            'estado'            => 'Estado',
+            'estado_helper'     => 'Nome do Estado',
+            'valor'             => 'Valor',
+            'valor_helper'      => 'Preço do frete',
+            'created_at'        => 'Criado em',
+            'created_at_helper' => '',
+            'updated_at'        => 'Atualizado em',
+            'updated_at_helper' => '',
+        ],
+    ],
 ];

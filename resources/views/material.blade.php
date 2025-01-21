@@ -53,7 +53,7 @@
                             <div style="display: flex; align-items: center; padding-top: 10px; margin-top: 10px;">
                                 <span class="tres_single-product-page-description-text002"><b>Quantidade:</b></span>
                                 <div style="display: flex; align-items: center; gap: 5px; margin-left: 10px;">
-                                <input type="number" name="quantidade" id="quantidade" min="1" style="width: 50px; text-align: center;" />
+                                <input type="number" name="quantidade" id="quantidade" value="1" min="1" style="width: 50px; text-align: center;" />
                                 </div>
                             </div>
 

@@ -422,6 +422,31 @@ class PermissionsTableSeeder extends Seeder
                 'id'    => '124',
                 'title' => 'categoria_access',
                 'description' => 'Categorias - Acesso',
+            ],
+            [
+                'id'    => '125',
+                'title' => 'frete_create',
+                'description' => 'Fretes - Criar',
+            ],
+            [
+                'id'    => '126',
+                'title' => 'frete_edit',
+                'description' => 'Fretes - Editar',
+            ],
+            [
+                'id'    => '127',
+                'title' => 'frete_show',
+                'description' => 'Fretes - Mostrar',
+            ],
+            [
+                'id'    => '128',
+                'title' => 'frete_delete',
+                'description' => 'Fretes - Deletar',
+            ],
+            [
+                'id'    => '129',
+                'title' => 'frete_access',
+                'description' => 'Fretes - Acesso',
             ]
             
         ];
