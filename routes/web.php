@@ -12,9 +12,13 @@ Route::post('/carrinho/adicionar/{materialId}', 'Admin\CarrinhoController@adicio
 
 Route::delete('/carrinho/remover/{materialId}', 'Admin\CarrinhoController@removerDoCarrinho')->name('carrinho.deletar');
 
+
 Route::get('fretes/{uf}', 'Admin\FreteController@get')->name('frete.buscar');
 
 Route::post('/pagamento', 'Admin\PagamentoController@index')->name('pagamento');
+
+Route::get('/final', 'Admin\FinalController@index')->name('final.index');
+
 
 Auth::routes();
 
