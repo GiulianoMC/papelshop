@@ -12,6 +12,7 @@ Route::post('/carrinho/adicionar/{materialId}', 'Admin\CarrinhoController@adicio
 
 Route::delete('/carrinho/remover/{materialId}', 'Admin\CarrinhoController@removerDoCarrinho')->name('carrinho.deletar');
 
+Route::get('/final', 'Admin\FinalController@index')->name('final.index');
 
 Auth::routes();
 
