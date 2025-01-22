@@ -217,6 +217,8 @@
 @endsection
 @section('content')
 
+
+
     <div class="square">
         <img src="{{ asset('images/carrinho.png') }}" alt="Ícone de pagamento" width="40" height="40">
         <div class="square-text">Carrinho</div>
@@ -271,19 +273,18 @@
                     </div>
                 </div>
             </div>
-
             <div id="direita-container" class=" d-flex flex-column">
-            <div class="resumo border rounded p-3 flex-grow-1 bg-white">
+                <div class="resumo border rounded p-3 flex-grow-1 bg-white">
                     <div class="d-flex align-items-center">
                         <img src="{{ asset('images/resumo.png') }}" alt="Ícone de pagamento" width="40" height="40" style="margin-right: 10px;">
                         <h5 class="mb-0 " style="font-weight:bold;">RESUMO</h5>
                     </div>
                     <br>
-                    <p>Valor dos materiais: <strong>R$ {{ number_format($precoMateriais, 2, ',', '.') }}</strong></p>
+                    <p>Valor dos materiais: <strong id="preco-materiais" data-preco="{{ $precoMateriais }}">R$ {{ number_format($precoMateriais, 2, ',', '.') }}</strong></p>
                     <hr>
-                    <p>Frete: <strong id="frete">R$ </strong></p>
+                    <p>Frete: <strong id="frete">R$ 00,00</strong></p>
                     <div class="valor-total d-flex align-items-center justify-content-center p-2 rounded">
-                        <p class="mb-0">Valor total: <strong>R$ </strong></p>
+                        <p class="mb-0">Valor total: <strong id = 'valorTotal'>R$ 00,00</strong></p>
                     </div>
                 </div>
                 <div class="entrega border rounded p-3 mt-4 bg-white">
@@ -311,11 +312,16 @@
                 <a href="https://buscacepinter.correios.com.br/app/endereco/index.php" target="_blank" class="d-block mt-2" style="color: #2c88d9;">Não lembro meu CEP</a>
                 </div>
                 <div class="mt-4">
-                <a href="#" id="pagamentoBtn" style="text-decoration: none;">
-                    <button class="btn btn-pagamento w-100 d-flex align-items-center justify-content-center">
-                        PAGAMENTO
-                    </button>
-                </a>
+                    <form id="formPagamento" action="{{ route('pagamento') }}" method="POST">
+                        @csrf
+                        <input type="hidden" name="valorTotal" id="hiddenValorTotal" value="0">
+                        <input type="hidden" name="frete" id="hiddenFrete" value="0">
+
+                        <button class="btn btn-pagamento w-100 d-flex align-items-center justify-content-center" type="button" onclick="verificarPagamento()">
+                            PAGAMENTO
+                        </button>
+                    </form>
+
                     <button class="btn btn-continuar-comprando w-100 mt-3" onclick = "Tela_Inicial()">Continuar comprando</button>
                 </div>
             </div>
@@ -360,8 +366,7 @@
                 </div>
             </div>
         </div>
-    </div>
-            
+    </div>        
     
 @endsection
 @section('scripts')
@@ -372,6 +377,20 @@
 
     
     <script>
+
+
+        function verificarPagamento() {
+            var valorTotal = document.getElementById('hiddenValorTotal').value;
+            var frete = document.getElementById('hiddenFrete').value;
+
+            // Exemplo de verificação (você pode adicionar outras condições aqui)
+            if (valorTotal == 0 || frete == 0) {
+                alert('Por favor, Selecione uma forma de entrega!');
+            } else {
+                // Se as condições forem atendidas, submete o formulário
+                document.getElementById('formPagamento').submit();
+            }
+        }
 
         window.addEventListener('load', function() {
             
@@ -398,32 +417,33 @@
 
 
         document.addEventListener('DOMContentLoaded', function() {
-        document.getElementById('buscarCep').addEventListener('click', function() {
-            const cep = document.getElementById('cep').value.replace(/\D/g, ''); // Remove qualquer caractere não numérico
+            document.getElementById('buscarCep').addEventListener('click', function() {
+                document.getElementById('retiradaLoja').checked = false;
+                const cep = document.getElementById('cep').value.replace(/\D/g, ''); // Remove qualquer caractere não numérico
 
-            if (cep.length === 8) {
-                fetch(`https://viacep.com.br/ws/${cep}/json/`)
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data.erro) {
-                            alert('CEP não encontrado');
-                        } else {
-                            document.getElementById('logradouro').value = data.logradouro;
-                            document.getElementById('bairro').value = data.bairro;
-                            document.getElementById('localidade').value = data.localidade;
-                            document.getElementById('uf').value = data.uf;
+                if (cep.length === 8) {
+                    fetch(`https://viacep.com.br/ws/${cep}/json/`)
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.erro) {
+                                alert('CEP não encontrado');
+                            } else {
+                                document.getElementById('logradouro').value = data.logradouro;
+                                document.getElementById('bairro').value = data.bairro;
+                                document.getElementById('localidade').value = data.localidade;
+                                document.getElementById('uf').value = data.uf;
 
-                            $('#cepModal').modal('show');
-                        }
-                    })
-                    .catch(error => {
-                        console.error('Erro ao buscar CEP:', error);
-                    });
-            } else {
-                alert('CEP inválido');
-            }
+                                $('#cepModal').modal('show');
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Erro ao buscar CEP:', error);
+                        });
+                } else {
+                    alert('CEP inválido');
+                }
+            });
         });
-    });
 
         document.getElementById('salvarCep').addEventListener('click', function() {
             var logradouro = document.getElementById('logradouro').value;
@@ -431,61 +451,84 @@
             var localidade = document.getElementById('localidade').value;
             var uf = document.getElementById('uf').value;
             var numero = document.getElementById('numero').value;
-            var valorFrete = obterValorFrete(uf);
-            document.getElementById('frete').innerText = `R$ ${valorFrete}`;
+            let precoElement;
+            let preco = 0;
+            let valorData = 0;
+            let valorTotal = 0; 
 
-            
+            fetch(`/fretes/${uf}`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                }
+            })
+            .then(response => {
+                if (response.ok) {
+                    return response.json();
+                } else {
+                    return response.json().then(errorData => {
+                        throw new Error(errorData.error || 'Infelizmente não atendemos sua Região.');
+                    });
+                }
+            })
+            .then(data => {
+                // Se o frete foi encontrado
+                document.getElementById('frete').innerText = 'R$ ' + data;
+
+                precoElement = document.getElementById('preco-materiais');
+                preco = parseFloat(precoElement.dataset.preco);
+                valorData = parseFloat(data);
+
+                valorTotal = (preco + valorData).toFixed(2);
+                
+                document.getElementById('valorTotal').innerText = 'R$ ' + valorTotal;
+
+                document.getElementById('hiddenValorTotal').value = 'R$ ' + valorTotal;
+                document.getElementById('hiddenFrete').value = 'R$ ' + data;
+            })
+            .catch(error => {
+                // Exibe a mensagem de erro
+                console.error('Erro:', error.message);
+                alert(error.message); // Alerta para o usuário
+            });
 
             if (numero) {
                 $('#cepModal').modal('hide');
             }
         });
 
-        function obterValorFrete(uf) {
-            var fretes = {
-                'AC': 80.00,  // Acre
-                'AL': 60.00,  // Alagoas
-                'AP': 85.00,  // Amapá
-                'AM': 90.00,  // Amazonas
-                'BA': 55.00,  // Bahia
-                'CE': 65.00,  // Ceará
-                'DF': 50.00,  // Distrito Federal
-                'ES': 40.00,  // Espírito Santo
-                'GO': 45.00,  // Goiás
-                'MA': 70.00,  // Maranhão
-                'MT': 60.00,  // Mato Grosso
-                'MS': 50.00,  // Mato Grosso do Sul
-                'MG': 35.00,  // Minas Gerais
-                'PA': 75.00,  // Pará
-                'PB': 65.00,  // Paraíba
-                'PR': 30.00,  // Paraná
-                'PE': 60.00,  // Pernambuco
-                'PI': 65.00,  // Piauí
-                'RJ': 30.00,  // Rio de Janeiro
-                'RN': 70.00,  // Rio Grande do Norte
-                'RS': 40.00,  // Rio Grande do Sul
-                'RO': 85.00,  // Rondônia
-                'RR': 95.00,  // Roraima
-                'SC': 35.00,  // Santa Catarina
-                'SP': 20.00,  // São Paulo (menor valor)
-                'SE': 55.00,  // Sergipe
-                'TO': 60.00   // Tocantins
-            };
-            
-            return fretes[uf] || 'UF não encontrada';
-        }
+        document.getElementById('retiradaLoja').addEventListener('change', function() {
+            let valorTotal = parseFloat(document.getElementById('valorTotal').innerText.replace('R$', '').trim().replace(',', '.'));
+            let valorFrete = parseFloat(document.getElementById('frete').innerText.replace('R$', '').trim().replace(',', '.'));
+            let precoElement;
+            let preco = 0;
+            precoElement = document.getElementById('preco-materiais');
+            preco = parseFloat(precoElement.dataset.preco);
 
-        document.getElementById('pagamentoBtn').addEventListener('click', function(event) {
-            event.preventDefault(); // Evita o redirecionamento padrão
+            if (this.checked) {
+                
+                document.getElementById('frete').innerHTML = "";
+                document.getElementById('cep').value = "";
 
-            var logradouro = document.getElementById('logradouro').value;
-            var bairro = document.getElementById('bairro').value;
-            var localidade = document.getElementById('localidade').value;
-            var uf = document.getElementById('uf').value;
-            var numero = document.getElementById('numero').value;
-            var check = document.getElementById('retiradaLoja').checked;
+                if(valorTotal <= (valorTotal + valorFrete)){
+                    document.getElementById('valorTotal').innerText = 'R$ '+ preco.toFixed(2).replace('.', ',');
+                    document.getElementById('frete').innerText = 'R$ 00,00';
 
+                    document.getElementById('hiddenValorTotal').value = 'R$ '+ preco.toFixed(2).replace('.', ',');
+                    document.getElementById('hiddenFrete').value = 'R$ 00,00';
+                }else{
+                    document.getElementById('valorTotal').innerText = 'R$ '+ (valorTotal - valorFrete).toFixed(2).replace('.', ',');
+                    document.getElementById('frete').innerText = 'R$ 00,00';
+
+                    document.getElementById('hiddenValorTotal').value = 'R$ '+ (valorTotal - valorFrete).toFixed(2).replace('.', ',');
+                    document.getElementById('hiddenFrete').value = 'R$ 00,00';
+                }
+            }
         });
+
+
+
 
 
         function Tela_Inicial(){
