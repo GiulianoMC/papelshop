@@ -20,7 +20,7 @@
                 <div class="panel-body">
 
                     <div class="table-responsive">
-                        <table class=" table table-bordered table-striped table-hover datatable datatable-Parceiro">
+                        <table class="table table-bordered table-striped table-hover datatable datatable-Parceiro">
                             <thead>
                                 <tr>
                                     <th width="9"></th>
@@ -31,9 +31,12 @@
                             </thead>
                             <tbody>
                                 @foreach($fretes as $key => $frete)
+                                    @php
+                                        $estados = trans('cruds.frete.fields.estados');
+                                    @endphp
                                     <tr data-entry-id="{{ $frete->id }}">
                                         <th>{{ $frete->id ?? '' }}</th>
-                                        <td>{{ $frete->estado ?? '' }}</td>
+                                        <td>{{ $estados[$frete->estado] ?? $frete->estado }}</td>
                                         <td>{{ $frete->valor ?? '' }}</td>
                                         <td>
                                             @can('frete_show')

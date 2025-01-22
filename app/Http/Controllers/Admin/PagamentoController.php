@@ -2,28 +2,50 @@
 
 namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\MassDestroyFreteRequest;
-use App\Http\Requests\StoreFreteRequest;
-use App\Http\Requests\UpdateFreteRequest;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
-use App\Frete; // Certifique-se de que o modelo Frete está importado corretamente
+//use App\Pagamento; // Certifique-se de que o modelo Frete está importado corretamente
 
-class FreteController extends Controller
+class PagamentoController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        abort_if(Gate::denies('frete_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        // Obtém o valor do cookie
+        $userId = auth()->id();
+
+        // Se o cookie não existir, redireciona para a página de login
+        if (!$userId) {
+            return redirect('/login');
+        }
+
+        $valorTotal = $request->valorTotal;
+        $valorFrete = $request->frete;
+
+        // Remover "R$" e espaços em branco
+        $valorTotalf = str_replace(['R$', ' '], '', $valorTotal);
+
+        // Substituir vírgula por ponto
+        $valorTotalf = str_replace(',', '.', $valorTotalf);
+
+        // Converter para float
+        $valorTotalf = floatval($valorTotalf);
+
         
-        $fretes = Frete::all();
-    
-        return view('admin.fretes.index', compact('fretes'));
+        $valorPix = $valorTotalf - ($valorTotalf * 0.20);
+
+        $economia = $valorTotalf - $valorPix;
+
+        $valorPix = 'R$ '. str_replace('.', ',', $valorPix);
+
+        $economia = 'R$ '. str_replace('.', ',', $economia);
+
+        return view('pagamento', compact('valorTotal','valorFrete', 'valorPix', 'economia'));
     }
 
-    public function create()
+   /* public function create()
     {
-        abort_if(Gate::denies('frete_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        abort_if(Gate::denies('cliente_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         return view('admin.fretes.create');
     }
@@ -93,9 +115,9 @@ class FreteController extends Controller
             return response()->json([
                 'error' => 'Infelizmente nao atendemos sua Regiao'
             ], 404); // Retorna um código HTTP 404
-        }*/
+        }
 
         return response()->json($frete->valor);
-    }
+    }*/
     
 }

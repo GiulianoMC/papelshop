@@ -91,18 +91,21 @@
 
 <body class="hold-transition login-page" style="background-color: white;">
     <header class="header text-white p-2 d-flex justify-content-between align-items-center">
-        <!-- Logo que aponta para a rota / -->
-        <a href="{{ url('/') }}" style="margin-left: 20px">
-            <img src="{{ asset('images/logo.png') }}" alt="Logo" class="logo">
-        </a>
 
-        <!-- Ícone do Carrinho (exibido apenas na página específica) -->
-        @if (Route::currentRouteName() === '/')
-            <a href="{{ route('carrinho') }}" class="me-3" style="text-decoration: none; color: white;">
-                <i class="fas fa-shopping-cart" style="font-size: 24px;"></i>
+        <div class="d-flex align-items-center">
+            <!-- Logo que aponta para a rota / -->
+            <a href="{{ url('/') }}" style="margin-left: 20px">
+                <img src="{{ asset('images/logo.png') }}" alt="Logo" class="logo">
             </a>
-        @endif
 
+            <!-- Ícone do Carrinho (exibido apenas na página específica) -->
+            @if (Route::currentRouteName() === '/')
+                <a href="{{ route('carrinho') }}" class="me-3" style="text-decoration: none; color: white; margin-left: 30px;">
+                    <i class="fas fa-shopping-cart" style="font-size: 24px;"></i>
+                </a>
+            @endif
+
+        </div>
         <!-- Condição para exibir o nome da pessoa logada ou o link para login/cadastro -->
         @if (Auth::check())
             <!-- Quando o usuário está logado -->

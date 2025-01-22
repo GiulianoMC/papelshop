@@ -14,14 +14,20 @@
                         @csrf
                         <div class="form-group {{ $errors->has('estado') ? 'has-error' : '' }}">
                             <label for="estado">{{ trans('cruds.frete.fields.estado') }}*</label>
-                            <input type="text" id="estado" name="estado" class="form-control" value="{{ old('estado') }}" required>
+                            <select id="estado" name="estado" class="form-control" required>
+                                <option value="">Selecione o estado</option>
+                                @foreach(trans('cruds.frete.fields.estados') as $sigla => $nome)
+                                    <option value="{{ $sigla }}" {{ old('estado') == $sigla ? 'selected' : '' }}>
+                                        {{ $nome }}
+                                    </option>
+                                @endforeach
+                            </select>
                             @if($errors->has('estado'))
                                 <p class="help-block">
                                     {{ $errors->first('estado') }}
                                 </p>
                             @endif
-                        </div>  
-                        
+                        </div>
                         <div class="form-group {{ $errors->has('valor') ? 'has-error' : '' }}">
                             <label for="valor">{{ trans('cruds.frete.fields.valor') }}*</label>
                             <input type="text" id="valor" name="valor" class="form-control" value="{{ old('valor') }}" required>

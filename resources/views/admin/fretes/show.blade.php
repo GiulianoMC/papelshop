@@ -30,9 +30,20 @@
                                         {{ trans('cruds.frete.fields.estado') }}
                                     </th>
                                     <td>
-                                        {{ $frete->estado }}
+                                        @php
+                                            $estados = trans('cruds.frete.fields.estados');
+                                        @endphp
+                                        {{ $estados[$frete->estado] ?? $frete->estado }}
                                     </td>
-                                </tr>                             
+                                </tr>
+                                <tr>
+                                    <th>
+                                        {{ trans('cruds.frete.fields.valor') }}
+                                    </th>
+                                    <td>
+                                        {{ $frete->valor }}
+                                    </td>
+                                </tr>
                             </tbody>
                         </table>
                         <a style="margin-top:20px;" class="btn btn-default" href="{{ url()->previous() }}">
@@ -40,12 +51,6 @@
                         </a>
                     </div>
 
-                    <ul class="nav nav-tabs">
-
-                    </ul>
-                    <div class="tab-content">
-
-                    </div>
                 </div>
 
             </div>
