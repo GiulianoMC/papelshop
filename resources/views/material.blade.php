@@ -5,14 +5,14 @@
             <div class="panel-body">
                 <form action="{{ route('carrinho.adicionar', $material['id']) }}" method="POST">
                     @csrf
-                    <div class="container-product">
+                    <div class="container-product" style="margin-top: 50px">
                         <div class="container-img-product">
                             <img class="img-product" src="{{ $material['imagem'] }}" alt="ImageI837" />
                         </div>
                         <div style="width: 100%">
                             <div class="tres_single-product-page-description-frame12">
                                 <div class="tres_single-product-page-description-frame1171274930">
-                                    <span class="tres_single-product-page-description-text082">
+                                    <span class="tres_single-product-page-description-text082" style="font-size: 3em">
                                         <span>{{ $material['nome'] }}</span>
                                     </span>
                                 </div>
@@ -20,7 +20,7 @@
 
                             <div style="display: flex; justify-content: space-between; padding-top: 10px; border-top: 1px solid #F0F1F5; margin-top: 10px">
                                 <div class="tres_single-product-page-description-frame17">
-                                    <span class="tres_single-product-page-description-text086">
+                                    <span class="tres_single-product-page-description-text086" style="font-size: 3em">
                                         <span>R$ {{ $material['preco'] }}</span>
                                     </span>
                                 </div>
@@ -28,7 +28,7 @@
 
                             <div style="display: flex; justify-content: space-between; padding-top: 10px; margin-top: 10px">
                                 <div class="tres_single-product-page-description-frame17">
-                                    <span class="tres_single-product-page-description-text002">
+                                    <span class="tres_single-product-page-description-text002" style="font-size: 2em">
                                         <span>{{ $material['descricao'] }}</span>
                                     </span>
                                 </div>
@@ -36,7 +36,7 @@
 
                             <div style="display: flex; justify-content: space-between; padding-top: 10px; margin-top: 10px">
                                 <div class="tres_single-product-page-description-frame17">
-                                    <span class="tres_single-product-page-description-text002">
+                                    <span class="tres_single-product-page-description-text002" style="font-size: 1.5em">
                                         <span>Categoria: {{ $categoria['nome'] }}</span>
                                     </span>
                                 </div>
@@ -44,7 +44,7 @@
 
                             <div style="display: flex; justify-content: space-between; padding-top: 10px; margin-top: 10px">
                                 <div class="tres_single-product-page-description-frame17">
-                                    <span class="tres_single-product-page-description-text002">
+                                    <span class="tres_single-product-page-description-text002" style="font-size: 1.5em">
                                         <span>Marca: {{ $marca['nome'] }}</span>
                                     </span>
                                 </div>
@@ -53,7 +53,7 @@
                             <div style="display: flex; align-items: center; padding-top: 10px; margin-top: 10px;">
                                 <span class="tres_single-product-page-description-text002"><b>Quantidade:</b></span>
                                 <div style="display: flex; align-items: center; gap: 5px; margin-left: 10px;">
-                                <input type="number" name="quantidade" id="quantidade" value="1" min="1" style="width: 50px; text-align: center;" />
+                                <input type="number" name="quantidade" id="quantidade" value="1" min="1" style="width: 60px; text-align: center; font-size: 16px;" />
                                 </div>
                             </div>
 

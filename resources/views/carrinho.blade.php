@@ -8,7 +8,7 @@
             font-weight: bold;
             height: 100vh;
             margin: 0;
-            font-size: 0.90em;
+            font-size: 1em;
         }
         .content {
             justify-content: center;

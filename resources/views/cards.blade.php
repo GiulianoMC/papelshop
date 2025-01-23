@@ -15,14 +15,13 @@
                 <div class="panel-body">
                     
                     <!-- Carrossel de Imagens -->
-                    <div class="row justify-content-center" id="corpo_carrossel">
-                        <div class="col-lg-8 col-md-10 col-sm-12 mx-auto">
+                    <div class="row justify-content-center" id="corpo_carrossel" style="margin-top: 50px; margin-bottom: 50px;">
+                        <div class="col-lg-10 col-md-10 col-sm-12 mx-auto">
                             <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                                 <!-- Indicadores do carrossel -->
                                 <ol class="carousel-indicators">
                                     <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
                                     <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                                    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
                                 </ol>
 
                                 <!-- Itens do carrossel -->
@@ -30,17 +29,7 @@
                                     <div class="item active">
                                         <div class="row">
                                             <div class="col-sm-6">
-                                                <img src="images/car_img1.png" class="img-responsive carousel-image" alt="...">
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <img src="images/car_img2.png" class="img-responsive carousel-image" alt="...">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="item">
-                                        <div class="row">
-                                            <div class="col-sm-6">
-                                                <img src="images/car_img3.png" class="img-responsive carousel-image" alt="...">
+                                                <img src="images/banner_danado.png" class="img-responsive carousel-image" alt="...">
                                             </div>
                                             <div class="col-sm-6">
                                                 <img src="images/car_img4.png" class="img-responsive carousel-image" alt="...">
@@ -61,10 +50,10 @@
 
                                 <!-- Controles do carrossel -->
                                 <a class="left carousel-control" href="#carouselExampleIndicators" data-slide="prev" style="margin-left: -10%;">
-                                    <span class="glyphicon glyphicon-chevron-left" style="background-color: black"></span>
+                                    <span class="glyphicon glyphicon-chevron-left" style="color:black"></span>
                                 </a>
                                 <a class="right carousel-control" href="#carouselExampleIndicators" data-slide="next" style="margin-right: -10%;">
-                                    <span class="glyphicon glyphicon-chevron-right" style="background-color: black"></span>
+                                    <span class="glyphicon glyphicon-chevron-right" style="color:black"></span>
                                 </a>
                             </div>
                         </div>
@@ -181,6 +170,7 @@
     #corpo_carrossel {
         display: flex;
         justify-content: center;
+        max-height: 300px;
     }
 
     .carousel {

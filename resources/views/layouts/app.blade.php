@@ -42,15 +42,26 @@
         }
         .header {
             display: flex;
-            justify-content: space-between; /* Mantém os elementos com o máximo de espaço possível entre eles */
-            align-items: center; /* Alinha verticalmente o logo e o ícone */
-            padding: 15px 15%; /* Adiciona um espaçamento de 30px nas laterais */
-            width: 100%; /* Garante que ocupe toda a largura disponível */
+            justify-content: space-between; /* Centraliza os elementos horizontalmente */
+            align-items: center; /* Centraliza os elementos verticalmente */
+
+            width: 100%;
+            position: relative; /* Necessário para alinhar corretamente */
         }
 
         .header .logo {
             max-width: 120px;
             height: auto;
+            margin-left: 80%;
+        }
+
+         /* Centralizar logo e ícones para web view */
+        @media (max-width: 768px) {
+            .header .logo {
+                max-width: 120px;
+                height: auto;
+                margin-left: -2%;
+            }
         }
 
         .header .login-icon {
@@ -91,48 +102,49 @@
 </style>
 
 <body class="hold-transition login-page" style="background-color: white;">
-    <header class="header text-white p-2 d-flex justify-content-between align-items-center">
+<header class="header text-white p-2 d-flex">
+    <div class="d-flex align-items-center">
+        <!-- Logo que aponta para a rota / -->
+        <a href="{{ url('/') }}" style="margin-left: 20px">
+            <img src="{{ asset('images/logo.png') }}" alt="Logo" class="logo">
+        </a>
+    </div>
 
-        <div class="d-flex align-items-center">
-            <!-- Logo que aponta para a rota / -->
-            <a href="{{ url('/') }}" style="margin-left: 20px">
-                <img src="{{ asset('images/logo.png') }}" alt="Logo" class="logo">
-            </a>
-
-            <!-- Ícone do Carrinho (exibido apenas na página específica) -->
-            @if (Route::currentRouteName() === '/')
-                <a href="{{ route('carrinho') }}" class="me-3" style="text-decoration: none; color: white; margin-left: 30px;">
-                    <i class="fas fa-shopping-cart" style="font-size: 24px;"></i>
-                </a>
-            @endif
-
-        </div>
-        <!-- Condição para exibir o nome da pessoa logada ou o link para login/cadastro -->
-        @if (Auth::check())
-            <!-- Quando o usuário está logado -->
-            <div class="user-info d-flex align-items-center" style="height: 100%;">
+    <!-- Condição para exibir o nome da pessoa logada ou o link para login/cadastro -->
+    @if (Auth::check())
+        <!-- Quando o usuário está logado -->
+        <div class="user-info d-flex align-items-center" style="height: 100%;margin-right: 5%;">
             <p style="color: white; margin: 0 30px 0 0; font-weight: bold; font-size: 15px;">
                 <a href="{{ route('login') }}" style="text-decoration: none; color: white;">Bem-vindo(a), {{ Auth::user()->name }}!</a>
             </p>
 
-                <a href="{{ route('logout') }}" 
-                onclick="event.preventDefault(); document.getElementById('logout-form').submit();" 
-                style="color: white; text-decoration: none;margin: 0 30px 0 0;">
-                    <i class="fas fa-sign-out-alt" style="font-size: 20px;"></i>
+            <!-- Ícone de carrinho -->
+            @if (Route::currentRouteName() === '/')
+                <a href="{{ route('carrinho') }}" class="me-3" style="text-decoration: none; color: white; margin-left: 20px; margin-right: 40px;">
+                    <i class="fas fa-shopping-cart" style="font-size: 24px;"></i>
                 </a>
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                    @csrf
-                </form>
-            </div>
+            @endif
 
-        @else
-            <!-- Quando o usuário não está logado -->
-            <a href="/login" class="login-icon d-flex align-items-center">
-                <img src="{{ asset('images/login_icon.png') }}" alt="Login" class="login-icon-image">
-                <p style="color: white; margin-left: 10px; margin-right: 70px;">Entre aqui ou <br>Cadastrar-se</p>
+            <!-- Ícone de logout -->
+            <a href="{{ route('logout') }}" 
+               onclick="event.preventDefault(); document.getElementById('logout-form').submit();" 
+               style="color: white; text-decoration: none;margin: 0 30px 0 0;">
+                <i class="fas fa-sign-out-alt" style="font-size: 20px;"></i>
             </a>
-        @endif
-    </header>
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                @csrf
+            </form>
+        </div>
+
+    @else
+        <!-- Quando o usuário não está logado -->
+        <a href="/login" class="login-icon d-flex align-items-center">
+            <img src="{{ asset('images/login_icon.png') }}" alt="Login" class="login-icon-image">
+            <p style="color: white; margin-left: 10px; margin-right: 70px;">Entre aqui ou <br>Cadastrar-se</p>
+        </a>
+    @endif
+</header>
+
 
 
 
