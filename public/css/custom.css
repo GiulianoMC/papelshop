@@ -55,3 +55,290 @@ table.dataTable thead .sorting_desc {
     padding-left: 0px;
     padding-right: 0px;
 }
+
+
+.material-home-grid-card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    height: 100%;
+}
+
+.material-home-grid-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.material-home-grid-content {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+
+#corpo_carrossel {
+    height: 400px;
+    overflow: hidden; 
+}
+
+.carousel-inner {
+    transition: transform 0.5s ease; 
+
+}
+
+.carousel-image {
+    width: 100%;
+    height: 100%;
+    object-fit:cover;
+}
+
+.carousel-item-next, .carousel-item-prev, .carousel-item.active {
+    transition: transform 0.6s ease-in-out;
+}
+
+.carousel-indicators {
+    position: absolute;
+    right: 0;
+    bottom: -50;
+    left: 80;
+    z-index: 15;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: center;
+    justify-content: center;
+    padding-left: 0;
+    margin-right: 15%;
+    margin-left: 15%;
+    list-style: none;
+}
+
+.carousel-indicators li {
+    background-color: #6c757d; 
+    width: 10px;             
+    height: 10px;
+    border-radius: 50%;       
+}
+
+.carousel-indicators .active {
+    background-color: #343a40; 
+}
+
+.material-home-grid-image {
+    width: 100%;
+    height: 180px;
+    object-fit: contain;
+    transition: opacity 0.3s ease;
+}
+
+.material-home-grid-image:hover {
+    opacity: 0.8; 
+}
+
+.material-home-grid-description {
+    font-size: 1.25em;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.material-home-grid-details {
+    font-size: 0.9em;
+    color: #555;
+}
+
+.material-home-grid-details div {
+    margin-bottom: 8px;
+}
+
+.material-home-grid-details span {
+    display: block;
+    font-size: 1.25em;
+}
+
+.material-home-grid-details strong {
+    font-weight: bold;
+    color: #333;
+}
+
+.material-home-grid-details span {
+    color: #777;
+}
+
+.material-home-grid-description, .material-home-grid-details {
+    transition: color 0.3s ease;
+}
+
+.material-home-grid-description:hover, .material-home-grid-details:hover {
+    color: #009688;
+}
+
+.material-home-grid-card a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.tres_single-product-page-description-icon-button {
+    width: 44px;
+    display: flex;
+    align-items: flex-start;
+    border-radius: 100px;
+    background-color: var(--dl-color-neutral_high-lightest);
+}
+
+.tres_single-product-page-description-icarrowleft {
+    width: 24px;
+    height: 24px;
+}
+
+.tres_single-product-page-description-frame120 {
+    gap: 20px;
+    display: flex;
+    align-items: flex-start;
+}
+
+.tres_single-product-page-description-frame1171274930 {
+    gap: 12px;
+    display: flex;
+    align-self: stretch;
+    align-items: flex-start;
+    flex-shrink: 0;
+}
+
+.tres_single-product-page-description-text082 {
+    color: var(--dl-color-neutral_low-darkest);
+    height: auto;
+    flex-grow: 1;
+    font-size: 20px;
+    align-self: stretch;
+    font-style: Semi Bold;
+    text-align: left;
+    font-weight: 700;
+    line-height: 139.9999976158142%;
+    font-stretch: normal;
+    text-decoration: none;
+}
+
+.tres_single-product-page-description-frame17 {
+    gap: 4px;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+}
+
+.tres_single-product-page-description-text086 {
+    color: var(--dl-color-primary-darkest);
+    height: auto;
+    font-size: 24px;
+    font-style: Bold;
+    text-align: left;
+    font-weight: 700;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
+}
+
+.container-product {
+    flex-direction: row;
+    align-items: center;
+    padding-right: 12%;
+    padding-left: 18%;
+    position: relative;
+    background: white;
+    left: 0px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+@media (max-width: 768px) {
+    .container-product {
+        flex-direction: column;
+        padding-right: 5%; 
+        padding-left: 5%;
+    }
+}
+
+.tres_single-product-page-description-default-button {
+    width: 100%;
+    display: flex;
+    padding: 18px 16px;
+    align-items: flex-start;
+    border-radius: 100px;
+    justify-content: center;
+    background-color: #2c88d9;
+    border: none;
+    margin-top: 48px;
+}
+
+.tres_single-product-page-description-wrapper41 {
+    gap: 12px;
+    display: flex;
+    flex-grow: 1;
+    align-items: center;
+    justify-content: center;
+}
+
+.tres_single-product-page-description-text096 {
+    color: white;
+    height: auto;
+    font-size: 16px;
+    font-style: Semi Bold;
+    text-align: center;
+    font-weight: 700;
+    line-height: 139.9999976158142%;
+    font-stretch: normal;
+    text-decoration: none;
+}
+
+.tres_single-product-page-description-text002 {
+    color: var(--dl-color-primary-darkest);
+    height: auto;
+    font-size: 12px;
+    font-style: Bold;
+    text-align: left;
+    font-stretch: normal;
+    text-decoration: none;
+}
+
+.tres_single-product-page-description-icexternallink {
+    width: 20px;
+    height: 20px;
+}
+
+.panel-body {
+    width: 100%;
+    margin: auto;
+    
+}
+
+.quatro_home-grid-wrapper74 {
+    gap: 4px;
+    display: flex;
+    align-self: stretch;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.container-img-product {
+    border: 1px solid #F0F1F5;
+    max-width: 500px;
+    width: 100%;
+    border-radius: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    object-fit: contain;
+    object-position: center;
+    padding: 16px
+}
+
+.img-product {
+    width: 100%;
+    max-width: 255px;
+    height: 100%
+}

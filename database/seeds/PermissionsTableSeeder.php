@@ -372,6 +372,81 @@ class PermissionsTableSeeder extends Seeder
                 'id'    => '114',
                 'title' => 'material_access',
                 'description' => 'Materiais - Acesso',
+            ],
+            [
+                'id'    => '115',
+                'title' => 'marca_create',
+                'description' => 'Marcas - Criar',
+            ],
+            [
+                'id'    => '116',
+                'title' => 'marca_edit',
+                'description' => 'Marcas - Editar',
+            ],
+            [
+                'id'    => '117',
+                'title' => 'marca_show',
+                'description' => 'Marcas - Mostrar',
+            ],
+            [
+                'id'    => '118',
+                'title' => 'marca_delete',
+                'description' => 'Marcas - Deletar',
+            ],
+            [
+                'id'    => '119',
+                'title' => 'marca_access',
+                'description' => 'Marcas - Acesso',
+            ],
+            [
+                'id'    => '120',
+                'title' => 'categoria_create',
+                'description' => 'Categorias - Criar',
+            ],
+            [
+                'id'    => '121',
+                'title' => 'categoria_edit',
+                'description' => 'Categorias - Editar',
+            ],
+            [
+                'id'    => '122',
+                'title' => 'categoria_show',
+                'description' => 'Categorias - Mostrar',
+            ],
+            [
+                'id'    => '123',
+                'title' => 'categoria_delete',
+                'description' => 'Categorias - Deletar',
+            ],
+            [
+                'id'    => '124',
+                'title' => 'categoria_access',
+                'description' => 'Categorias - Acesso',
+            ],
+            [
+                'id'    => '125',
+                'title' => 'frete_create',
+                'description' => 'Fretes - Criar',
+            ],
+            [
+                'id'    => '126',
+                'title' => 'frete_edit',
+                'description' => 'Fretes - Editar',
+            ],
+            [
+                'id'    => '127',
+                'title' => 'frete_show',
+                'description' => 'Fretes - Mostrar',
+            ],
+            [
+                'id'    => '128',
+                'title' => 'frete_delete',
+                'description' => 'Fretes - Deletar',
+            ],
+            [
+                'id'    => '129',
+                'title' => 'frete_access',
+                'description' => 'Fretes - Acesso',
             ]
             
         ];

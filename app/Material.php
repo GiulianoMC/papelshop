@@ -13,7 +13,7 @@ class Material extends Model
     protected $primaryKey = 'id';
 
     // Atributos que podem ser preenchidos em massa
-    protected $fillable = ['nome', 'marca_id', 'categoria_id', 'preco', 'descricao', 'data_compra', 'disponivel'];
+    protected $fillable = ['nome', 'marca_id', 'categoria_id', 'preco', 'descricao', 'data_compra', 'imagem', 'disponivel'];
 
     // Relação com a tabela 'categorias'
     public function categorias()
@@ -24,6 +24,11 @@ class Material extends Model
     public function marcas()
     {
         return $this->belongsTo(Marca::class, 'marca_id'); 
+    }
+
+    public function carrinhos()
+    {
+        return $this->hasMany(Carrinho::class);
     }
 
 }
