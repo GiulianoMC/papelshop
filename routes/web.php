@@ -1,8 +1,28 @@
 <?php
 
-Route::redirect('/', '/login');
+// Route::redirect('/', '/login');
+Route::get('/', 'Admin\HomeController@home')->name('/');
 Route::redirect('/home', '/admin');
-Auth::routes(['register' => false]);
+
+Route::get('material/{id}', 'Admin\MaterialController@showmaterial')->name('material.show');
+
+Route::get('/carrinho', 'Admin\CarrinhoController@index')->name('carrinho');
+
+Route::post('/carrinho/adicionar/{materialId}', 'Admin\CarrinhoController@adicionarAoCarrinho')->name('carrinho.adicionar');
+
+Route::delete('/carrinho/remover/{materialId}', 'Admin\CarrinhoController@removerDoCarrinho')->name('carrinho.deletar');
+
+
+Route::get('fretes/{uf}', 'Admin\FreteController@get')->name('frete.buscar');
+
+Route::post('/pagamento', 'Admin\PagamentoController@index')->name('pagamento');
+
+Route::get('/final', 'Admin\FinalController@index')->name('final.index');
+
+Route::delete('/deletarCarrinho', 'Admin\CarrinhoController@deletarCarrinho')->name('deletar.carrinho');
+
+
+Auth::routes();
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'middleware' => ['auth']], function () {
     Route::get('/', 'HomeController@index')->name('home');
@@ -85,4 +105,20 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::delete('materiais/massDestroy', 'MaterialController@massDestroy')->name('materiais.massDestroy');
     Route::delete('materiais/destroy/{material}', 'MaterialController@destroy')->name('materiais.destroy');
     Route::resource('materiais', 'MaterialController');
+
+    //Marca
+    Route::delete('marcas/massDestroy', 'MarcaController@massDestroy')->name('marcas.massDestroy');
+    Route::delete('marcas/destroy/{material}', 'MarcaController@destroy')->name('marcas.destroy');
+    Route::resource('marcas', 'MarcaController');
+
+    //Categoria
+    Route::delete('categorias/massDestroy', 'CategoriaController@massDestroy')->name('categorias.massDestroy');
+    Route::delete('categorias/destroy/{material}', 'CategoriaController@destroy')->name('categorias.destroy');
+    Route::resource('categorias', 'CategoriaController');
+
+    //Frete
+    Route::delete('fretes/massDestroy', 'FreteController@massDestroy')->name('frete.massDestroy');
+    Route::delete('fretes/destroy/{frete}', 'FreteController@destroy')->name('frete.destroy');
+    Route::resource('fretes', 'FreteController');
+
 });

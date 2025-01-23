@@ -2,7 +2,7 @@
     <section class="sidebar" style="height: auto;">
         <ul class="sidebar-menu tree" data-widget="tree">
             <li>
-                <a href="{{ route("admin.home") }}">
+                <a href="{{ route("/") }}">
                     <i class="fas fa-fw fa-tachometer-alt">
 
                     </i>
@@ -62,10 +62,40 @@
                         @can('material_access')
                             <li class="{{ request()->is('admin/materiais') || request()->is('admin/materiais/*') ? 'active' : '' }}">
                                 <a href="{{ route("admin.materiais.index") }}">
-                                    <i class="fa-fw fas fa-building">
+                                    <i class="fa-fw fas fa-boxes">
 
                                     </i>
                                     <span>{{ trans('cruds.material.title') }}</span>
+                                </a>
+                            </li>
+                        @endcan
+                        @can('marca_access')
+                            <li class="{{ request()->is('admin/marcas') || request()->is('admin/marcas/*') ? 'active' : '' }}">
+                                <a href="{{ route("admin.marcas.index") }}">
+                                    <i class="fa-fw fas fa-tags">
+
+                                    </i>
+                                    <span>{{ trans('cruds.marca.title') }}</span>
+                                </a>
+                            </li>
+                        @endcan
+                        @can('categoria_access')
+                            <li class="{{ request()->is('admin/categorias') || request()->is('admin/categorias/*') ? 'active' : '' }}">
+                                <a href="{{ route("admin.categorias.index") }}">
+                                    <i class="fa-fw fas fa-list">
+
+                                    </i>
+                                    <span>{{ trans('cruds.categoria.title') }}</span>
+                                </a>
+                            </li>
+                        @endcan
+                        @can('frete_access')
+                            <li class="{{ request()->is('admin/fretes') || request()->is('admin/fretes/*') ? 'active' : '' }}">
+                                <a href="{{ route("admin.fretes.index") }}">
+                                <i class="fa-fw fas fa-truck"></i>
+
+                                    </i>
+                                    <span>{{ trans('cruds.frete.title') }}</span>
                                 </a>
                             </li>
                         @endcan
@@ -211,6 +241,7 @@
                     </ul>
                 </li>
             @endcan
+
             <!-- @can('user_alert_access')
                 <li class="{{ request()->is('admin/user-alerts') || request()->is('admin/user-alerts/*') ? 'active' : '' }}">
                     <a href="{{ route("admin.user-alerts.index") }}">

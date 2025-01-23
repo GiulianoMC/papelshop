@@ -78,6 +78,14 @@
                                 </tr>
                                 <tr>
                                     <th>
+                                        {{ trans('cruds.material.fields.imagem') }}
+                                    </th>
+                                    <td>
+                                        {{ $material->imagem }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>
                                         {{ trans('cruds.material.fields.disponivel') }}
                                     </th>
                                     <td>
