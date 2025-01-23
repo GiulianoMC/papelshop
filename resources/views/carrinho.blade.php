@@ -8,6 +8,7 @@
             font-weight: bold;
             height: 100vh;
             margin: 0;
+            font-size: 0.90em;
         }
         .content {
             justify-content: center;
@@ -116,8 +117,15 @@
         }
         .container-custom {
             max-width: 1100px;
-            margin: 0 15%;
+            margin: 0 20%;
             padding: 20px;
+        }
+        @media (max-width: 768px) {
+            .container-custom {
+                max-width: 1100px;
+                margin: 0 2%; /* Menor margem em telas pequenas */
+                padding: 20px;
+            }
         }
 
         .product-item img {
@@ -204,6 +212,7 @@
 
         #direita-container, .scrollable-container {
             height: 100%;
+            margin: 0 auto;
         }
 
         .custom-margin {

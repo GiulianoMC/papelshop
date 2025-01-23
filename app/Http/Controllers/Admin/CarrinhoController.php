@@ -32,6 +32,10 @@ class CarrinhoController extends Controller
             ->with('material')  // Carrega os materiais relacionados
             ->get()
             ->pluck('material');  // Extrai os materiais da coleção
+
+        if ($materiais->isEmpty()) {
+            return back()->with('error', 'Nenhum material encontrado no carrinho.');  // Volta para a página anterior com uma mensagem de erro
+        }
     
         // Conversão das imagens dos materiais em Base64 e inclui a quantidade
         $materiais = $materiais->map(function ($material) use ($userId) {
@@ -121,6 +125,22 @@ class CarrinhoController extends Controller
         }
 
         return redirect()->route('carrinho')->with('error', 'Item não encontrado no carrinho.');
+    }
+
+    public function deletarCarrinho(){
+        $userId = auth()->id();
+    
+        $item = Carrinho::where('user_id', $userId)->get();
+    
+        if ($item->isEmpty()) {
+            return response()->json(['message' => 'Nenhum item encontrado no carrinho.'], 404);
+        }
+    
+        $item->each(function($cartItem) {
+            $cartItem->delete();
+        });
+    
+        return response()->json(['message' => 'Itens removidos do carrinho com sucesso!']);
     }
 }
     

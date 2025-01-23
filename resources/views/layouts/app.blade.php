@@ -73,6 +73,7 @@
         .footer {
             margin-top: auto; 
             padding: 20px 0;
+            font-size: 1.5em;
         }
         .footer .social-icons img {
             width: 25px;

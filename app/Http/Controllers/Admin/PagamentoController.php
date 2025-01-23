@@ -31,16 +31,26 @@ class PagamentoController extends Controller
         // Converter para float
         $valorTotalf = floatval($valorTotalf);
 
+        // Remover "R$" e espaços em branco
+        $valorTotalfrete = str_replace(['R$', ' '], '', $valorFrete);
+
+        // Substituir vírgula por ponto
+        $valorTotalfrete= str_replace(',', '.', $valorTotalfrete);
+
+        // Converter para float
+        $valorTotalfrete = floatval($valorTotalfrete);
         
-        $valorPix = $valorTotalf - ($valorTotalf * 0.20);
+        $valorPix = round($valorTotalf * 0.8, 2);
 
-        $economia = $valorTotalf - $valorPix;
+        $economia = round($valorTotalf - $valorPix, 2);
 
-        $valorPix = 'R$ '. str_replace('.', ',', $valorPix);
+        $valorPixStr = 'R$ '. str_replace('.', ',', $valorPix);
 
-        $economia = 'R$ '. str_replace('.', ',', $economia);
+        $economiaStr = 'R$ '. str_replace('.', ',', $economia);
 
-        return view('pagamento', compact('valorTotal','valorFrete', 'valorPix', 'economia'));
+        $valorTotalComFrete = $valorPix + $valorTotalfrete;
+
+        return view('pagamento', compact('valorTotal','valorFrete', 'valorPixStr', 'economiaStr', 'valorTotalComFrete'));
     }
 
    /* public function create()

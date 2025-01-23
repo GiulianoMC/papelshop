@@ -110,13 +110,16 @@
             padding: 30px;
             border-radius: 10px;
             text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
         }
 
         .progress-bar {
             width: 100%;
             background-color: #f3f3f3;
             border-radius: 10px;
-            margin-top: 20px;
         }
 
         .progress-bar .progress {
@@ -124,6 +127,7 @@
             width: 0%;
             background-color: #2c88d9;
             border-radius: 10px;
+            margin: 0;
         }
 
         .loading-message {
@@ -240,13 +244,20 @@
                         </div>
                         <hr>
                         <div class="d-flex justify-content-between mb-3 box-pix valorPix">
-                            <span>Valor à vista no <strong>PIX</strong>:</span>
-                            <span><strong>{{ $valorPix }}</strong></span>
+                            <span>Valor dos produtos:</span>
+                            <span><strong style="text-decoration: line-through;">{{ $valorTotal }}</strong></span>
+                            <span><strong>{{ $valorPixStr }}</strong></span>
                         </div>
                         <div class="d-flex justify-content-between mb-3 box-eco valorPix">
                             <span>Você economizou:</span>
-                            <span>{{ $economia }}</span>
+                            <span>{{ $economiaStr }}</span>
                         </div>
+                        <hr>
+                        <div class="d-flex justify-content-between mb-3">
+                            <span>Valor Total da Compra:</span>
+                            <span style="color:black">{{ $valorTotalComFrete }}</span>
+                        </div>
+                        
                     </div>
                 </div>
                 <div class="mt-4">
@@ -339,19 +350,41 @@
 
         // Adicionando a animação de carregamento
         document.getElementById('continueBtn').addEventListener('click', function() {
-            document.getElementById('loadingModal').style.display = 'flex'; // Exibe o modal de carregamento
-            let progress = document.querySelector('.progress');
-            let width = 0;
-            let interval = setInterval(function() {
-                if (width >= 100) {
-                    clearInterval(interval);
-                    document.getElementById('loadingModal').style.display = 'none';
-                    
-                } else {
-                    width += 10;
-                    progress.style.width = width + '%';
-                }
-            }, 500); // Progresso a cada 0.5s
-        });
+        document.getElementById('loadingModal').style.display = 'flex'; // Exibe o modal de carregamento
+        let progress = document.querySelector('.progress');
+        let width = 0;
+        let interval = setInterval(function() {
+            if (width >= 100) {
+                clearInterval(interval);
+                document.getElementById('loadingModal').style.display = 'none';
+
+                const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+
+                fetch('/deletarCarrinho', {
+                    method: 'DELETE',  
+                    headers: {
+                        'Accept': 'application/json',
+                        'X-CSRF-TOKEN': csrfToken, 
+                    }
+                })
+                .then(response => response.json())  // Parse a resposta como JSON
+                .then(data => {
+                    if (data.message) {
+                        if (data.message === 'Itens removidos do carrinho com sucesso!') {
+                            window.location.href = '/final'; // Redireciona se os itens foram removidos
+                        }
+                    }
+                })
+                .catch(error => {
+                    console.error('Erro na requisição:', error);
+                });
+
+            } else {
+                width += 10;
+                progress.style.width = width + '%';
+            }
+        }, 500); // Progresso a cada 0.5s
+    });
+
     </script>
 @endsection

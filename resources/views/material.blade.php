@@ -75,44 +75,41 @@
                 </div>
 
                 <h1 style="font-size: 28px; font-weight: 700; margin: 30px 10%;">Você pode gostar</h1>
-                    <div class="row text-center" style="margin-right: 10%;margin-left: 10%">
-                    @foreach ($items as $key => $material)
-                                    <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 itemGridCard"
-                                        style="margin-bottom: 20px; height: 350px">
-                                            <div class="material-home-grid-card">
-                                                <img class="material-home-grid-image" src=" {{ $material['imagem'] }}">
-                                                <div class="material-home-grid-content">
-                                                    <a style="text-decoration: none;" href="/material/{{ $material['id'] }}">
-                                                        <div class="material-home-grid-description">
-                                                            <span>{{ $material['nome'] }}</span>
-                                                        </div>
-                                                        <div class="material-home-grid-details">
-                                                            <div>
-                                                                <span><strong>Categoria:</strong> 
-                                                                    {{ $categorias->firstWhere('id', $material['categoria_id'])->nome ?? 'Não definida' }}
-                                                                </span>
-                                                            </div>
-                                                            <div>
-                                                                <span><strong>Marca:</strong> 
-                                                                    {{ $marcas->firstWhere('id', $material['marca_id'])->nome ?? 'Não definida' }}
-                                                                </span>
-                                                            </div>
-                                                            <div>
-                                                                <span><strong>Preço: R</strong> {{ $material['preco'] }}</span>
-                                                            </div>
-                                                            <div>
-                                                                <span><strong>Disponível:</strong> {{ $material['disponivel'] ? 'Sim' : 'Não' }}</span>
-                                                            </div>
-                                                            <div>
-                                                                <span><strong>Descrição:</strong> {{ $material['descricao'] }}</span>
-                                                            </div>
-                                                        </div>
-                                                    </a>
+                <div class="row text-center" style="margin-right: 5%; margin-top: 10px; margin-left: 5%">
+                            @foreach ($items as $key => $material)
+                                <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 itemGridCard" style="margin-bottom: 20px; height: 400px">
+                                    <div class="material-home-grid-card">
+                                        <img class="material-home-grid-image" src="{{ $material['imagem'] }}">
+                                        <div class="material-home-grid-content">
+                                            <a style="text-decoration: none;" href="/material/{{ $material['id'] }}">
+                                                <div class="material-home-grid-description" style="font-size:1.50em;">
+                                                    <span>{{ $material['nome'] }}</span>
                                                 </div>
-                                            </div>
+                                                <div class="material-home-grid-details">
+                                                    <div style="font-size:1.10em;">
+                                                        <span><strong>Categoria:</strong> 
+                                                            {{ $categorias->firstWhere('id', $material['categoria_id'])->nome ?? 'Não definida' }}
+                                                        </span>
+                                                    </div>
+                                                    <div style="font-size:1.10em;">
+                                                        <span><strong>Marca:</strong> 
+                                                            {{ $marcas->firstWhere('id', $material['marca_id'])->nome ?? 'Não definida' }}
+                                                        </span>
+                                                    </div>
+                                                    <div style="font-size:1.10em;">
+                                                        <span><strong>Descrição:</strong> {{ $material['descricao'] }}</span>
+                                                    </div>
+                                                    <hr>
+                                                    <div style="font-size:1.65em;">
+                                                        <span><strong>Preço: R$ {{ $material['preco'] }}</strong></span>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
                                     </div>
-                                @endforeach
-                    </div>
+                                </div>
+                            @endforeach
+                        </div>
     </div>
 @endsection
 @section('scripts')

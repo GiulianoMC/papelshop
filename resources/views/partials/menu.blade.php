@@ -92,7 +92,7 @@
                         @can('frete_access')
                             <li class="{{ request()->is('admin/fretes') || request()->is('admin/fretes/*') ? 'active' : '' }}">
                                 <a href="{{ route("admin.fretes.index") }}">
-                                    <i class="fa-fw fas fa-boxes">
+                                <i class="fa-fw fas fa-truck"></i>
 
                                     </i>
                                     <span>{{ trans('cruds.frete.title') }}</span>

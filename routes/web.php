@@ -19,6 +19,8 @@ Route::post('/pagamento', 'Admin\PagamentoController@index')->name('pagamento');
 
 Route::get('/final', 'Admin\FinalController@index')->name('final.index');
 
+Route::delete('/deletarCarrinho', 'Admin\CarrinhoController@deletarCarrinho')->name('deletar.carrinho');
+
 
 Auth::routes();
 
